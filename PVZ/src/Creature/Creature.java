@@ -6,39 +6,38 @@ public abstract class Creature {
     private boolean is_aquatic;
  
     public Creature(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic){
-        this.name = name;
-        this.health = health;
-        this.attack_damage = attack_damage;
-        this.attack_speed = attack_speed;
+          this.name = name;
+          this.health = health;
+          this.attack_damage = attack_damage;
+          this.attack_speed = attack_speed;
+          this.is_aquatic = is_aquatic;
     }
 
     public String getName() {
-        return name;
+          return name;
       }
     
       public int getHealth() {
-        return health;
+          return health;
       }
     
       public int getAtkDmg() {
-        return attack_damage;
+          return attack_damage;
       }
     
       public int getAtkSpd() {
-        return attack_speed;
+          return attack_speed;
+      }
+      public void setHealth(int health){
+          this.health = health;
       }
     
-      public void takeDmg(int dmg) {
-        if (health < dmg){
-            health = 0;
-        }else{
-            health -= dmg;
-        }
-      }
+      public abstract void attack(Zombie zombie, Plant plant);
     
       public boolean isDead() {
         return health == 0;
       }
+
 
       public boolean isAquatic() {
         return is_aquatic;
