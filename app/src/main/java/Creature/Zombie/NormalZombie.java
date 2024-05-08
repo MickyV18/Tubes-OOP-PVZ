@@ -1,9 +1,13 @@
-package app.src.main.java.Creature.Zombie;
-import app.src.main.java.Creature.*;
-import app.src.main.java.Creature.Plant.*;
+package Creature.Zombie;
+import Creature.*;
+import Creature.Plant.*;
 
 public class NormalZombie extends Zombie {
     public NormalZombie(){
         super("Normal ZOmbie", 125, 100, 1, false);
+    }
+
+    public void attack(Zombie zombie, Plant plant){
+        
     }
 }

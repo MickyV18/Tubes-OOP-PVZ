@@ -1,6 +1,6 @@
-package app.src.main.java.Creature;
-import app.src.main.java.Plant.*;
-import app.src.main.java.Zombie.*;
+package Creature;
+import Creature.Zombie.Zombie;
+import Creature.Plant.Plant;
 
 
 public abstract class Creature {
@@ -42,7 +42,6 @@ public abstract class Creature {
       public boolean isDead() {
         return health == 0;
       }
-
 
       public boolean isAquatic() {
         return is_aquatic;

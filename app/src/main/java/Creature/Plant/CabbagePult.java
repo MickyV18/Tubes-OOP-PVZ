@@ -1,6 +1,6 @@
-package app.src.main.java.Creature.Plant;
-import app.src.main.java.Creature.Zombie.*;
-import app.src.main.java.Creature.*;
+package Creature.Plant;
+import Creature.Zombie.*;
+import Creature.*;
 
 public class CabbagePult extends Plant{
     public CabbagePult(){
