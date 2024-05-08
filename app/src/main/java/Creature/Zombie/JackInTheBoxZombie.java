@@ -1,9 +1,9 @@
-package app.src.main.java.Zombie;
+package app.src.main.java.Creature.Zombie;
 import app.src.main.java.Creature.*;
-import app.src.main.java.Plant.*;
+import app.src.main.java.Creature.Plant.*;
 
 public class JackInTheBoxZombie extends Zombie {
-    public JackInTheBoxZombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic){
+    public JackInTheBoxZombie(){
         super("JackInTheBox Zombie", 100, 1000, 1, false);
     }
 

@@ -1,10 +1,10 @@
-package app.src.main.java.Zombie;
+package app.src.main.java.Creature.Zombie;
 import app.src.main.java.Creature.*;
-import app.src.main.java.Plant.*;
+import app.src.main.java.Creature.Plant.*;
 
 public class PoleVaultingZombie extends Zombie{
     private boolean jumped = false;
-    public PoleVaultingZombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic){
+    public PoleVaultingZombie(){
         super("Pole Vaulting Zombie", 175, 100, 1, false);
     }
 

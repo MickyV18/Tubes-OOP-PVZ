@@ -1,6 +1,6 @@
-package app.src.main.java.Zombie;
+package app.src.main.java.Creature.Zombie;
 import app.src.main.java.Creature.*;
-import app.src.main.java.Plant.*;
+import app.src.main.java.Creature.Plant.*;
 
 public interface Jump {
     public void jump();
