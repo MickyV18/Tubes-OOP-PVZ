@@ -9,8 +9,8 @@ public class DolphinRiderZombie extends Zombie implements Jump {
     }
 
     public void jump(){
+        // posisi zombie jadi pindah 2 tile
         jumped = false;
-        System.out.println("coba gradle");
     }
     public boolean hasJumped(){
         return jumped;
