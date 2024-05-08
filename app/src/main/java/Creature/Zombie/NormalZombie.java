@@ -6,8 +6,4 @@ public class NormalZombie extends Zombie {
     public NormalZombie(){
         super("Normal ZOmbie", 125, 100, 1, false);
     }
-
-    public void attack(Zombie zombie, Plant plant){
-        
-    }
 }

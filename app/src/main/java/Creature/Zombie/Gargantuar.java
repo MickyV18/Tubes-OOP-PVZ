@@ -4,10 +4,6 @@ import Creature.Plant.*;
 
 public class Gargantuar extends Zombie {
     public Gargantuar(){
-        super("Gargantuar", 500, 1000, 10, false);
-    }
-
-    public void attack(Zombie zombie, Plant plant){
-        
+        super("Gargantuar", 500, 1000, 5, false);
     }
 }

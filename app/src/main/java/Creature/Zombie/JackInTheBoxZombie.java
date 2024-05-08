@@ -8,11 +8,7 @@ public class JackInTheBoxZombie extends Zombie {
     }
 
     public void attack(Zombie zombie, Plant plant) {
-        if (plant.getHealth() <= zombie.getAtkDmg()){
-            plant.setHealth(0);
-        }else{
-            plant.setHealth(zombie.getHealth() - plant.getAtkDmg());
-        }
+        plant.setHealth(0);
         zombie.setHealth(0);
     }
 }
