@@ -1,5 +1,5 @@
-public class Repeater {
-    public Repeater(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic, int cost, int range, int cooldown){
-        super();
+public class Repeater extends Plant{
+    public Repeater(){
+        super("Repeater", 100, 50, 4, false, 150, -1, 10);
     }
 }

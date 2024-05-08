@@ -1,5 +1,5 @@
-public class TangleKelp {
+public class TangleKelp extends Plant{
     public TangleKelp(){
-        super();
+        super("Tangle Kelp", 100, 5000, 0, true, 50, 1, 10);
     }
 }
