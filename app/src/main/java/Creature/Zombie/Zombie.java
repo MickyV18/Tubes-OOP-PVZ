@@ -27,4 +27,8 @@ public abstract class Zombie extends Creature{
     public void SlowedTimeDecrease(){
         slowed -= 1;
     }
+
+    public void move(){
+        
+    }
 }
