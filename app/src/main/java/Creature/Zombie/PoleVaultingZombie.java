@@ -9,6 +9,7 @@ public class PoleVaultingZombie extends Zombie{
     }
 
     public void jump(){
+        // posisi zombie jadi pindah 2 tile
         jumped = false;
     }
     public boolean hasJumped(){
