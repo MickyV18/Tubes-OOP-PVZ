@@ -16,6 +16,14 @@ public class App<T> {
         System.out.println(zombie.getSlowed());
     }
 
+    public String getState(){
+        return state;
+    }
+
+    public void setState(String state){
+        this.state = state;
+    }
+
     public void startGame() {
 
     }
