@@ -14,12 +14,31 @@ public class Game {
         this.sun = sun;
     }
 
+    public void gameloop() {
+    }
+
+    public void openfile(){
+        // open file
+    }
+
+    public void spawnPlant(){
+
+    }
+    
+    public void spawnZombie(){
+
+    }
+
+    public void digplant(){
+
+    }
+
     public boolean isGameover() {
         return gameover;
     }
 
-    public void setGameover(boolean gameover) {
-        this.gameover = gameover;
+    public void setGameover() {
+        gameover = true;
     }
 
     public int getSun() {
@@ -27,7 +46,7 @@ public class Game {
     }
 
     public void addPlant(Plant plant) {
-        deckPlants.add(plant);
+        
     }
 
     public void produceSun() {
