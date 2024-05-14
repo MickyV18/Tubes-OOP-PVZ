@@ -15,11 +15,11 @@ public abstract class Plant extends Creature {
         this.cooldown = cooldown;
     }
 
-    public void attack(Zombie zombie, Plant plant) {
-        if (zombie.getHealth() <= plant.getAtkDmg()){
+    public void attack(Zombie zombie) {
+        if (zombie.getHealth() <= super.getAtkDmg()){
             zombie.setHealth(0);
         }else{
-            zombie.setHealth(zombie.getHealth() - plant.getAtkDmg());
+            zombie.setHealth(zombie.getHealth() - super.getAtkDmg());
         }
     }
 

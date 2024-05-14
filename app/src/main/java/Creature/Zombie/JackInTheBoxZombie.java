@@ -7,8 +7,8 @@ public class JackInTheBoxZombie extends Zombie {
         super("JackInTheBox Zombie", 100, 1000, 1, false);
     }
 
-    public void attack(Zombie zombie, Plant plant) {
+    public void attack(Plant plant) {
         plant.setHealth(0);
-        zombie.setHealth(0);
+        super.setHealth(0);
     }
 }

@@ -57,6 +57,4 @@ public abstract class Creature {
     public void reset_time_stamp() {
         time_stamp = 0;
     }
-
-    public abstract void attack(Zombie zombie, Plant plant);
 }

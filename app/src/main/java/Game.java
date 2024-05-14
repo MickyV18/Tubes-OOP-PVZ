@@ -2,9 +2,10 @@ import Creature.*;
 import Creature.Plant.*;
 import Creature.Zombie.*;
 import java.util.*;
+import Tiles.*;
 
 public class Game {
-    // private List<List<Tile>> tiles;
+    private Tile[][] tiles;
     private List<Plant> deckPlants;
     private int sun;
     private boolean gameover = false;
@@ -17,6 +18,19 @@ public class Game {
     public Game() {
         // this.deckPlants = deckPlants;
         sun = 25;
+        for (int i = 0; i < 11; i++) {
+            for (int j = 0; j < 6; j++) {
+                if (i == 0) {
+                    tiles[i][j] = new EndTile();
+                } else if (i == 10) {
+                    tiles[i][j] = new SpawnTile();
+                } else if (j == 2 || j == 3) {
+                    tiles[i][j] = new WaterTile();
+                } else {
+                    tiles[i][j] = new GroundTile();
+                }
+            }
+        }
     }
 
     public void gameloop() {
@@ -25,6 +39,7 @@ public class Game {
         while (!isGameover()) {
             long currentTime = System.currentTimeMillis();
             // NYOBA PLANT BELOM SELESAI
+            // INI HARUSNYA BISA JADI 1 THREAD BARU (NGEPLANT TANEMAN AMA NGAPUSTANEMAN)
             // String name = scanner.next();
             // String[] stats = name.split(" ");
             // try {
@@ -47,32 +62,55 @@ public class Game {
                     gametimestamp = 0;
                 }
             }
-            
+
             for (int i = 0; i < 6; i++) {    
                 if ((currentTime - previousTime) >= 1000 && CountZombie < 10 && gametimestamp >= 20 && gametimestamp <= 160) {
                     double probability = 0.3;
                     if (random.nextDouble(0, 1) < probability) {
                         Zombie zombie = spawnZombie();
-                        if (zombie.isAquatic() && tile aquatic){
+                        tiles[10][i].addZombie(zombie);
+                        if (zombie.isAquatic() && (i == 2 || i == 3)){
+                            zombie.move();
+                        } else if (!zombie.isAquatic() && (i == 0 || i == 1 || i == 4 || i == 5)){
+                            zombie.move();
+                        } else{
+                            tiles[10][i].removeZombie(zombie);
                         }
                     }
                     try {
                         // harus dimasukin ke atribut di tile
-                        System.out.println(zombie.getName());
+                        System.out.println(tiles[10][i]);
                     } catch (Exception e) {
                         // TODO: handle exception
                     }
                 }
-                for (int j = 0; j < panjang tile; j++) {                            
-                    if (tile.getzombie() != null) {
-                        for (int j = 0; j < jumlah zombie; j++) {
-                            if (zombie ke j . timestamp - previousTime >= zombie.attaack_speed && tile next to zombie ada plant){
-                                zombie attack si plant
-                            }
-                            if (zombie ke j . timestamp - previousTime >= 5000 && tile next to zombie ga ada plant){
-                                move();
-                                if (tile next to zombie ada plant){
-                                    zombie attack si plant
+                for (int j = 10; j < 0; j--) {
+                    // getzombie belom ada                            
+                    if (tiles[j][i].getZombies() != null) {
+                        for (Zombie zombie : tiles[j][i].getZombies()) {
+                            if (i == 2 || i == 3){
+                                WaterTile nextTile = (WaterTile) tiles[j-1][i];
+                                if (zombie.getTimeCreated() - previousTime >= zombie.getAtkSpd() && nextTile.getPlant() != null){
+                                    zombie.attack(nextTile.getPlant());
+                                }
+                                if (zombie.getTimeCreated() - previousTime >= 5000 && nextTile.getPlant() == null){
+                                    zombie.move();
+                                    nextTile = (WaterTile) tiles[j-2][i];
+                                    if (nextTile.getPlant() != null){
+                                        zombie.attack(nextTile.getPlant());
+                                    }
+                                }
+                            } else{
+                                GroundTile nextTile = (GroundTile) tiles[j-1][i];
+                                if (zombie.getTimeCreated() - previousTime >= zombie.getAtkSpd() && nextTile.getPlant() != null){
+                                    zombie.attack(nextTile.getPlant());
+                                }
+                                if (zombie.getTimeCreated() - previousTime >= 5000 && nextTile.getPlant() == null){
+                                    zombie.move();
+                                    nextTile = (GroundTile) tiles[j-2][i];
+                                    if (nextTile.getPlant() != null){
+                                        zombie.attack(nextTile.getPlant());
+                                    }
                                 }
                             }
                         }
