@@ -20,6 +20,7 @@ public class App<T> {
     }
 
     public static void startGame() {
+        // dia ngebuat deck baru trus milih 6 plant, baru mulai gamenya
         // Deck deckPlants = new Deck()
         // Game game = new Game()
         // gameloop();
@@ -42,7 +43,6 @@ public class App<T> {
     }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        long previousTime = System.currentTimeMillis();
         while (!over) {
             String name = scanner.next();
             if (name.equals("")) {

@@ -12,6 +12,7 @@ public class Game {
     private final String[] zombie_name = { "Bucket", "Dolphin", "Ducky", "Football", "Gargantuar", "Jack", "Newspaper",
             "Normal", "Pole", "Cone" };
     private static long previousTime = System.currentTimeMillis();
+    private int gametimestamp = 0;
 
     public Game() {
         // this.deckPlants = deckPlants;
@@ -22,6 +23,7 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
 
         while (!isGameover()) {
+            long currentTime = System.currentTimeMillis();
             // NYOBA PLANT BELOM SELESAI
             // String name = scanner.next();
             // String[] stats = name.split(" ");
@@ -36,31 +38,69 @@ public class Game {
             // // TODO: handle exception
             // }
 
-            long currentTime = System.currentTimeMillis();
-            if (currentTime - previousTime >= 1000 && CountZombie < 10) {
-                Random random = new Random();
-                double probability = 0.3;
-                if (random.nextDouble(0, 1) < probability) {
-                    Zombie zombie = spawnZombie();
-                }   
-            }
-            try {
-                // harus dimasukin ke atribut di tile
-                System.out.println(zombie.getName());
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
+            Random random = new Random();
+            int produceSun_time = random.nextInt(5, 10);
 
+            if ((currentTime - produceSun_time) >= 1000){
+                gametimestamp++;
+                if (gametimestamp > 200){
+                    gametimestamp = 0;
+                }
+            }
+            
+            for (int i = 0; i < 6; i++) {    
+                if ((currentTime - previousTime) >= 1000 && CountZombie < 10 && gametimestamp >= 20 && gametimestamp <= 160) {
+                    double probability = 0.3;
+                    if (random.nextDouble(0, 1) < probability) {
+                        Zombie zombie = spawnZombie();
+                        if (zombie.isAquatic() && tile aquatic){
+                        }
+                    }
+                    try {
+                        // harus dimasukin ke atribut di tile
+                        System.out.println(zombie.getName());
+                    } catch (Exception e) {
+                        // TODO: handle exception
+                    }
+                }
+                for (int j = 0; j < panjang tile; j++) {                            
+                    if (tile.getzombie() != null) {
+                        for (int j = 0; j < jumlah zombie; j++) {
+                            if (zombie ke j . timestamp - previousTime >= zombie.attaack_speed && tile next to zombie ada plant){
+                                zombie attack si plant
+                            }
+                            if (zombie ke j . timestamp - previousTime >= 5000 && tile next to zombie ga ada plant){
+                                move();
+                                if (tile next to zombie ada plant){
+                                    zombie attack si plant
+                                }
+                            }
+                        }
+                    }
+                    
+                    if (tile. isplanted()){
+                        if (plant.name = sunflower && (currentTime - previousTime) >= 3000){
+                            produceSun();
+                        }
+                        if (plant . timestamp - previousTime >= plant.attack_speed){
+                            plant attack si zombie
+                            
+                        }
+                    }
+
+                    if ((currentTime - previousTime) <= produceSun_time && gametimestamp < 100){
+                        produceSun();
+                        produceSun_time = random.nextInt(5, 10);
+                    }
+                }
+
+            }
             previousTime = currentTime;
         }
     }
 
     public void openfile() {
         // open file
-    }
-
-    public void spawnPlant() {
-
     }
 
     public Zombie spawnZombie() {
@@ -70,7 +110,7 @@ public class Game {
             BucketheadZombie zombie = new BucketheadZombie();
             CountZombie++;
             return zombie;
-        } else if ( zombieInt == 2) {
+        } else if (zombieInt == 2) {
             DolphinRiderZombie zombie = new DolphinRiderZombie();
             CountZombie++;
             return zombie;
@@ -126,6 +166,10 @@ public class Game {
     }
 
     public void addPlant(Plant plant) {
+
+    }
+
+    public void removePlant(Plant plant) {
 
     }
 
