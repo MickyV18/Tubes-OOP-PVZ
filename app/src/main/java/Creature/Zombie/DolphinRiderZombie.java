@@ -9,7 +9,7 @@ public class DolphinRiderZombie extends Zombie implements Jump {
     }
 
     public void jump(){
-        // posisi zombie jadi pindah 2 tile
+        // posisi zombie jadi pindah 2 tile dan plant yg dilompatin mati
         jumped = false;
     }
     public boolean hasJumped(){

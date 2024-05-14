@@ -4,6 +4,6 @@ import Creature.Plant.*;
 
 public class NormalZombie extends Zombie {
     public NormalZombie(){
-        super("Normal ZOmbie", 125, 100, 1, false);
+        super("Normal Zombie", 125, 100, 1, false);
     }
 }
