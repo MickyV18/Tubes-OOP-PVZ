@@ -8,11 +8,11 @@ public abstract class Zombie extends Creature{
         super(name, health, attack_damage, attack_speed, is_aquatic);
     }
 
-    public void attack(Zombie zombie, Plant plant) {
-        if (plant.getHealth() <= zombie.getAtkDmg()){
+    public void attack(Plant plant) {
+        if (plant.getHealth() <= super.getAtkDmg()){
             plant.setHealth(0);
         }else{
-            plant.setHealth(plant.getHealth() - zombie.getAtkDmg());
+            plant.setHealth(plant.getHealth() - super.getAtkDmg());
         }
     }
 

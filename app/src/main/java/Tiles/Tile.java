@@ -13,4 +13,7 @@ public abstract class Tile {
 
     public void addZombie(Zombie zombie) { this.zombies.addLast(zombie); }
     public void removeZombie(Zombie zombie) { this.zombies.remove(zombie); }
+    public List<Zombie> getZombies(){
+        return zombies;
+    }
 }  
