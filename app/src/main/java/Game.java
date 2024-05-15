@@ -12,11 +12,12 @@ public class Game {
     private int CountZombie = 0;
     private final String[] zombie_name = { "Bucket", "Dolphin", "Ducky", "Football", "Gargantuar", "Jack", "Newspaper",
             "Normal", "Pole", "Cone" };
-    private static long previousTime = System.currentTimeMillis();
-    private int gametimestamp = 0;
+    private int gametimestamp = -1;
+    long currentTime;
 
     public Game() {
         // this.deckPlants = deckPlants;
+        currentTime = System.currentTimeMillis();
         sun = 25;
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 6; j++) {
