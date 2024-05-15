@@ -1,5 +1,5 @@
 package Tile;
 
-public class TIle {
+public class Tile {
     
 }

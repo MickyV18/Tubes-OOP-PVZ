@@ -22,19 +22,22 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
 
         while (!isGameover()) {
-            // NYOBA PLANT BELOM SELESAI
-            // String name = scanner.next();
-            // String[] stats = name.split(" ");
-            // try {
-            // if (stats[0] == "PLANT"){
-            // String type = stats[1];
-            // int x_position = Integer.parseInt(stats[2]);
-            // int y_position = Integer.parseInt(stats[3]);
 
-            // }
-            // } catch (Exception e) {
-            // // TODO: handle exception
-            // }
+            // NYOBA PLANT BELOM SELESAI
+            String name = scanner.next();
+            String[] stats = name.split(" ");
+            try {
+                if (stats[0] == "PLANT"){
+                    String type = stats[1];
+                    // cek plant ada di deck atau gak
+                    int x_position = Integer.parseInt(stats[2]);
+                    int y_position = Integer.parseInt(stats[3]);
+                    Plant tanaman = PlantFactory.createPlant(type);
+                    System.out.println(tanaman.getName());
+                }
+            } catch (Exception e) {
+            // TODO: handle exception (invalidplantexception)
+            }
 
             long currentTime = System.currentTimeMillis();
             if (currentTime - previousTime >= 1000 && CountZombie < 10) {
@@ -52,6 +55,12 @@ public class Game {
             }
 
             previousTime = currentTime;
+        }
+    }
+
+    class InvalidPlantException extends Exception{
+        public InvalidPlantException(String message){
+            super("Plant not in deck");
         }
     }
 
@@ -126,7 +135,7 @@ public class Game {
     }
 
     public void addPlant(Plant plant) {
-
+        // add plant dr inventory ke deck
     }
 
     public void produceSun() {
