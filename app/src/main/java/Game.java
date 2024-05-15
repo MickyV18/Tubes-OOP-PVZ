@@ -13,7 +13,7 @@ public class Game {
     private final String[] zombie_name = { "Bucket", "Dolphin", "Ducky", "Football", "Gargantuar", "Jack", "Newspaper",
             "Normal", "Pole", "Cone" };
     private static long previousTime = System.currentTimeMillis();
-    private int gametimestamp = 0;
+    private int gametimestamp = -1;
 
     public Game() {
         // this.deckPlants = deckPlants;
@@ -25,9 +25,13 @@ public class Game {
                 } else if (i == 10) {
                     tiles[i][j] = new SpawnTile();
                 } else if (j == 2 || j == 3) {
-                    tiles[i][j] = new WaterTile();
+                    if (i != 0 || i != 10){
+                        tiles[i][j] = new WaterTile();
+                    }
                 } else {
-                    tiles[i][j] = new GroundTile();
+                    if (i != 0 || i != 10){
+                        tiles[i][j] = new GroundTile();
+                    }
                 }
             }
         }
@@ -35,6 +39,9 @@ public class Game {
 
     public void gameloop() {
         Scanner scanner = new Scanner(System.in);
+
+        Random random = new Random();
+        int produceSun_time = random.nextInt(5, 10);
 
         while (!isGameover()) {
             long currentTime = System.currentTimeMillis();
@@ -53,47 +60,39 @@ public class Game {
             // // TODO: handle exception
             // }
 
-            Random random = new Random();
-            int produceSun_time = random.nextInt(5, 10);
-
-            if ((currentTime - produceSun_time) >= 1000){
-                gametimestamp++;
-                if (gametimestamp > 200){
-                    gametimestamp = 0;
-                }
+            gametimestamp++;
+            if (gametimestamp > 200){
+                gametimestamp = 0;
             }
 
             for (int i = 0; i < 6; i++) {    
-                if ((currentTime - previousTime) >= 1000 && CountZombie < 10 && gametimestamp >= 20 && gametimestamp <= 160) {
+                if (CountZombie < 10 && gametimestamp >= 20 && gametimestamp <= 160) {
                     double probability = 0.3;
                     if (random.nextDouble(0, 1) < probability) {
                         Zombie zombie = spawnZombie();
                         tiles[10][i].addZombie(zombie);
-                        if (zombie.isAquatic() && (i == 2 || i == 3)){
-                            zombie.move();
-                        } else if (!zombie.isAquatic() && (i == 0 || i == 1 || i == 4 || i == 5)){
-                            zombie.move();
-                        } else{
+                        if ((!zombie.isAquatic() && (i == 2 || i == 3)) || (zombie.isAquatic() && (i == 0 || i == 1 || i == 4 || i == 5))){
                             tiles[10][i].removeZombie(zombie);
                         }
                     }
-                    try {
-                        // harus dimasukin ke atribut di tile
-                        System.out.println(tiles[10][i]);
-                    } catch (Exception e) {
-                        // TODO: handle exception
-                    }
                 }
-                for (int j = 10; j < 0; j--) {
-                    // getzombie belom ada                            
+                for (int j = 10; j < 0; j--) {                     
                     if (tiles[j][i].getZombies() != null) {
                         for (Zombie zombie : tiles[j][i].getZombies()) {
                             if (i == 2 || i == 3){
                                 WaterTile nextTile = (WaterTile) tiles[j-1][i];
-                                if (zombie.getTimeCreated() - previousTime >= zombie.getAtkSpd() && nextTile.getPlant() != null){
-                                    zombie.attack(nextTile.getPlant());
-                                }
-                                if (zombie.getTimeCreated() - previousTime >= 5000 && nextTile.getPlant() == null){
+                                if ((int)(zombie.getTimeStamp() - currentTime)/1000 % zombie.getAtkSpd() == 0 && nextTile.getPlant() != null){
+                                    if (zombie.getName() == "Dolphin Rider Zombie"){
+                                        DolphinRiderZombie dolphinRiderZombie = (DolphinRiderZombie) zombie;
+                                        if (!dolphinRiderZombie.hasJumped()){
+                                            dolphinRiderZombie.jump();
+                                        } else{
+                                            zombie.attack(nextTile.getPlant());
+                                        }
+                                    }else{
+                                        zombie.attack(nextTile.getPlant());
+                                    }
+                                } else if ((int)(zombie.getTimeStamp() - currentTime)/1000 % 5 == 0 && nextTile.getPlant() == null){
                                     zombie.move();
                                     nextTile = (WaterTile) tiles[j-2][i];
                                     if (nextTile.getPlant() != null){
@@ -102,10 +101,19 @@ public class Game {
                                 }
                             } else{
                                 GroundTile nextTile = (GroundTile) tiles[j-1][i];
-                                if (zombie.getTimeCreated() - previousTime >= zombie.getAtkSpd() && nextTile.getPlant() != null){
-                                    zombie.attack(nextTile.getPlant());
-                                }
-                                if (zombie.getTimeCreated() - previousTime >= 5000 && nextTile.getPlant() == null){
+                                if ((int)(zombie.getTimeStamp() - currentTime)/1000 % zombie.getAtkSpd() == 0 && nextTile.getPlant() != null){
+                                    if (zombie.getName() == "Pole Vaulting Zombie"){
+                                        PoleVaultingZombie polevaultingZombie = (PoleVaultingZombie) zombie;
+                                        if (!polevaultingZombie.hasJumped()){
+                                            polevaultingZombie.jump();
+                                        } else{
+                                            zombie.attack(nextTile.getPlant());
+                                        }
+                                    }else{
+                                        zombie.attack(nextTile.getPlant());
+                                    }
+                                    zombie.setTimeStamp(currentTime);
+                                } else if ((int)(zombie.getTimeStamp() - currentTime)/1000 % 5 == 0 && nextTile.getPlant() == null){
                                     zombie.move();
                                     nextTile = (GroundTile) tiles[j-2][i];
                                     if (nextTile.getPlant() != null){
@@ -116,17 +124,17 @@ public class Game {
                         }
                     }
                     
-                    if (tile. isplanted()){
-                        if (plant.name = sunflower && (currentTime - previousTime) >= 3000){
-                            produceSun();
-                        }
-                        if (plant . timestamp - previousTime >= plant.attack_speed){
-                            plant attack si zombie
+                    // if (tile. isplanted()){
+                    //     if (plant.name = sunflower && (currentTime - previousTime) >= 3000){
+                    //         produceSun();
+                    //     }
+                    //     if (plant . timestamp - previousTime >= plant.attack_speed){
+                    //         plant attack si zombie
                             
-                        }
-                    }
-
-                    if ((currentTime - previousTime) <= produceSun_time && gametimestamp < 100){
+                    //     }
+                    // }
+                    produceSun_time --;
+                    if (produceSun_time == 0&& gametimestamp < 100){
                         produceSun();
                         produceSun_time = random.nextInt(5, 10);
                     }
@@ -134,7 +142,12 @@ public class Game {
 
             }
             previousTime = currentTime;
-        }
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+        }    
     }
 
     public void openfile() {
