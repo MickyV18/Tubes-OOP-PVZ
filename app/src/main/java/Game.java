@@ -92,7 +92,7 @@ public class Game {
                                         zombie.attack(nextTile.getPlant());
                                     }
                                 } else if ((int)(zombie.getTimeStamp() - currentTime)/1000 % 5 == 0 && nextTile.getPlant() == null){
-                                    zombie.move();
+                                    move(zombie, j, i);
                                     nextTile = (WaterTile) tiles[j-2][i];
                                     if (nextTile.getPlant() != null){
                                         zombie.attack(nextTile.getPlant());
@@ -196,6 +196,11 @@ public class Game {
             CountZombie++;
             return zombie;
         }
+    }
+
+    public void move(Zombie zombie, int x_position, int y_position){
+        tiles[x_position][y_position].removeZombie(zombie);
+        tiles[x_position-1][y_position].addZombie(zombie);
     }
 
     public void digplant() {
