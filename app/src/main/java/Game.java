@@ -12,7 +12,6 @@ public class Game {
     private int CountZombie = 0;
     private final String[] zombie_name = { "Bucket", "Dolphin", "Ducky", "Football", "Gargantuar", "Jack", "Newspaper",
             "Normal", "Pole", "Cone" };
-    private static long previousTime = System.currentTimeMillis();
     private int gametimestamp = -1;
 
     public Game() {
@@ -141,7 +140,6 @@ public class Game {
                 }
 
             }
-            previousTime = currentTime;
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {
