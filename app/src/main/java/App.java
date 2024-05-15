@@ -24,7 +24,7 @@ public class App<T> {
         // dia ngebuat deck baru trus milih 6 plant, baru mulai gamenya
         Scanner scanner = new Scanner(System.in);
         String name = scanner.next();
-        
+
         // Game game = new Game()
         // gameloop();
     }
@@ -45,25 +45,28 @@ public class App<T> {
 
     }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        inventorydeck = new InventoryDeck<>();
-        while (!over) {
-            String name = scanner.next();
-            if (name.equals("Start Game")) {
-                startGame();
-            } else if (name.equals("Help")) {
-                help();
-            } else if (name.equals("List Plant")){
-                plantList();
-            } else if (name.equals("List Zombie")){
-                zombieList();
-            } else if (name.equals("Exit")){
-                exit();
-            } else{
-                System.out.println("Command not found");
-            }
-        }
-        scanner.close();
+
+        // Scanner scanner = new Scanner(System.in);
+        // inventorydeck = new InventoryDeck<>();
+        // while (!over) {
+        //     String name = scanner.next();
+        //     if (name.equals("Start Game")) {
+        //         startGame();
+        //     } else if (name.equals("Help")) {
+        //         help();
+        //     } else if (name.equals("List Plant")){
+        //         plantList();
+        //     } else if (name.equals("List Zombie")){
+        //         zombieList();
+        //     } else if (name.equals("Exit")){
+        //         exit();
+        //     } else{
+        //         System.out.println("Command not found");
+        //     }
+        // }
+        // scanner.close();
+        Game game = new Game();
+        game.gameloop();
     }
 
 }

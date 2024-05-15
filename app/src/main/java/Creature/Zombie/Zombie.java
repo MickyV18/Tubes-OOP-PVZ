@@ -1,6 +1,7 @@
 package Creature.Zombie;
 import Creature.*;
 import Creature.Plant.*;
+import Tiles.*;
 
 public abstract class Zombie extends Creature{
     private int slowed = 0;
@@ -26,9 +27,5 @@ public abstract class Zombie extends Creature{
 
     public void SlowedTimeDecrease(){
         slowed -= 1;
-    }
-
-    public void move(){
-        
     }
 }
