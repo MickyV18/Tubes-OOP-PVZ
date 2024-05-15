@@ -4,17 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import Creature.Plant.CabbagePult;
-import Creature.Plant.CherryBomb;
-import Creature.Plant.Lilypad;
-import Creature.Plant.Peashooter;
-import Creature.Plant.Plant;
-import Creature.Plant.Repeater;
-import Creature.Plant.SnowPea;
-import Creature.Plant.Squash;
-import Creature.Plant.Sunflower;
-import Creature.Plant.TangleKelp;
-import Creature.Plant.Wallnut;
+import Creature.Plant.*;
 
 public class InventoryDeck <T extends Plant> {
     private List<T> deck;

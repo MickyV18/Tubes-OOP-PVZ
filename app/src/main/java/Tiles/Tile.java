@@ -16,4 +16,7 @@ public abstract class Tile {
     public List<Zombie> getZombies(){
         return zombies;
     }
+    public boolean hasZombie(){
+        return !zombies.isEmpty();
+    }
 }  

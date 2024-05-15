@@ -19,8 +19,12 @@ public abstract class Creature {
         this.is_aquatic = is_aquatic;
     }
 
-    public long getTimeCreated() {
+    public long getTimeStamp() {
         return time_stamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        time_stamp = timeStamp;
     }
 
     public String getName() {
