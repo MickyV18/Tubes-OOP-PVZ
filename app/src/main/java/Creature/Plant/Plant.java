@@ -15,11 +15,11 @@ public abstract class Plant extends Creature {
         this.cooldown = cooldown;
     }
 
-    public void attack(Zombie zombie, Plant plant) {
-        if (zombie.getHealth() <= plant.getAtkDmg()){
+    public void attack(Zombie zombie) {
+        if (zombie.getHealth() <= super.getAtkDmg()){
             zombie.setHealth(0);
         }else{
-            zombie.setHealth(zombie.getHealth() - plant.getAtkDmg());
+            zombie.setHealth(zombie.getHealth() - super.getAtkDmg());
         }
     }
 
@@ -33,5 +33,28 @@ public abstract class Plant extends Creature {
 
     public int getCoolDown() {
         return cooldown;
+    }
+
+    public boolean isSunEnough(Plant plant, int sun) {
+        if (sun >= plant.getCost()) {
+            sun -= plant.getCost();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isCooldown(long currentTime, long time_stamp){
+        long time = currentTime - time_stamp;
+        int duration = (int) time;
+        duration = duration/1000;
+
+        if (duration%cooldown == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

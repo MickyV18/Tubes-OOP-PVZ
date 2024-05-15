@@ -9,7 +9,7 @@ public abstract class Creature {
     private int attack_damage;
     private int attack_speed;
     private boolean is_aquatic;
-    private long time_stamp = 0;
+    private long time_stamp = System.currentTimeMillis();
 
     public Creature(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic) {
         this.name = name;
@@ -57,6 +57,4 @@ public abstract class Creature {
     public void reset_time_stamp() {
         time_stamp = 0;
     }
-
-    public abstract void attack(Zombie zombie, Plant plant);
 }
