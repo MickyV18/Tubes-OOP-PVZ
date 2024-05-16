@@ -3,7 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import Creature.Plant.Lilypad;
-import Creature.Plant.Plant;
+import Creature.Plant.*;
 import Creature.Plant.PlantFactory;
 import Creature.Plant.Sunflower;
 import Creature.Zombie.BucketheadZombie;
@@ -105,7 +105,7 @@ public class Game {
             System.out.println();
             System.out.println();
             for (int i = 0; i < 6; i++) {
-                for (int j = 0; j < 11; j++) {
+                for (int j = 1; j < 11; j++) {
                     if (tiles[j][i].hasZombie()) {
                         System.out.print("Z");
                         // System.err.println(tiles[j][i].getClass().getName());
@@ -130,6 +130,11 @@ public class Game {
                 spawnZombieActivity(i);
                 // System.out.print(CountZombie);
                 for (int j = 1; j < 11; j++) {
+                // j=0 cek ada zombie atau gak
+                // cek di tile zombie ada plant atau gak
+                // pake instance of
+                // benerin zombie move
+                // plant hp 0 tapi mau nyerang (sinkron)
                     if (tiles[j][i].hasZombie()) {
                         System.out.println("MASUK LOOP");
                         for (Zombie zombie : tiles[j][i].getZombies()) {
@@ -143,19 +148,28 @@ public class Game {
                         }
                     }
 
-            GroundTile ground = (GroundTile) tiles[j][i];
-            WaterTile water = (WaterTile) tiles[j][i];
-            if (ground.getPlant() != null){
-                if (ground.getPlant() instanceof Sunflower || water.getPlant() instanceof Sunflower && (int) ((ground.getPlant().getTimeStamp() - currentTime) / 1000) >= 3){
-                    produceSun();
-                }
-            }
-
-
-
-                // if ((int) ((ground.getPlant().getTimeCreated() - currentTime) / 1000) % ground.getPlant().getAtkSpd() == 0){
-                //     ground.getPlant().attack();
-                // }
+                    if (i==2 || i==3){
+                        WaterTile water = (WaterTile) tiles[j][i];
+                        if (water.getPlant() != null){
+                            if (water.getPlant() instanceof Sunflower && (int) ((water.getPlant().getTimeStamp() - currentTime) / 1000) >= 3){
+                                produceSun();
+                            }
+                            if ((int) ((water.getPlant().getTimeStamp() - currentTime) / 1000) % water.getPlant().getAtkSpd() == 0){
+                                // plant attack zombie
+                            }
+                        }
+                    }
+                    else {
+                        GroundTile ground = (GroundTile) tiles[j][i];
+                        if (ground.getPlant() != null){
+                            if (ground.getPlant() instanceof Sunflower && (int) ((ground.getPlant().getTimeStamp() - currentTime) / 1000) >= 3){
+                                produceSun();
+                            }
+                            if ((int) ((ground.getPlant().getTimeStamp() - currentTime) / 1000) % ground.getPlant().getAtkSpd() == 0){
+                                // plant attack zombie
+                            }
+                        }
+                    }
                 }
 
             }
