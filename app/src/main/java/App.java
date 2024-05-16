@@ -8,7 +8,7 @@ public class App<T> {
 
     private static String state;
     private static boolean over = false;
-    private static InventoryDeck<Plant> inventorydeck;
+    private static InventoryDeck inventorydeck;
     // private List<List<T>> Sessions;
 
     public static String getState() {
@@ -25,7 +25,7 @@ public class App<T> {
         // String name = scanner.next();
 
         // Game game = new Game();
-        inventorydeck = new InventoryDeck<>();
+        inventorydeck = new InventoryDeck();
         boolean stateDeck = false;
         int command;
         // command = scanner.nextInt();
@@ -141,11 +141,12 @@ public class App<T> {
         // scanner.close();
         // Game game = new Game();
         // game.gameloop();
-        Scanner scanner = new Scanner(System.in);
-        String command = scanner.nextLine();
-        System.out.println(command);
-        scanner.close();
-        // startGame();
+        // Scanner scanner = new Scanner(System.in);
+        // System.out.println("KETIK DISINI: ");
+        // String command = scanner.nextLine();
+        // System.out.println(command);
+        // scanner.close();
+        startGame();
     }
 
 }
