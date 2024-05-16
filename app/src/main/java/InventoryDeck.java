@@ -4,7 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import Creature.Plant.*;
+import Creature.Plant.CabbagePult;
+import Creature.Plant.CherryBomb;
+import Creature.Plant.Lilypad;
+import Creature.Plant.Peashooter;
+import Creature.Plant.Plant;
+import Creature.Plant.Repeater;
+import Creature.Plant.SnowPea;
+import Creature.Plant.Squash;
+import Creature.Plant.Sunflower;
+import Creature.Plant.TangleKelp;
+import Creature.Plant.Wallnut;
 
 public class InventoryDeck <T extends Plant> {
     private List<T> deck;
@@ -62,6 +72,7 @@ public class InventoryDeck <T extends Plant> {
     }  
 
     public void randomDeck() {
+        deck.clear();
         Random random = new Random();
         while (deck.size() < 6) {
             int idx = random.nextInt(inventory.size());
@@ -90,6 +101,7 @@ public class InventoryDeck <T extends Plant> {
 
     public void printDeck() {
         int count = 1;
+        System.out.println("\nDeck:");
         for (T plant : deck) {
             if (plant != null) {
                 System.out.println(count + ". " + plant.getName());
@@ -102,6 +114,7 @@ public class InventoryDeck <T extends Plant> {
 
     public void printInventory() {
         int count = 1;
+        System.out.println("\nInventory:");
         for (T plant : inventory) {
             System.out.println(count + ". " + plant.getName());
             count++;

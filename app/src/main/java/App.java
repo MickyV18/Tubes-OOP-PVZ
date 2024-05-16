@@ -1,9 +1,7 @@
 
-import Creature.Plant.*;
-import Creature.Zombie.*;
-import Creature.*;
-import java.lang.System;
 import java.util.Scanner;
+
+import Creature.Plant.Plant;
 
 public class App<T> {
 
@@ -23,8 +21,79 @@ public class App<T> {
     public static void startGame() {
         // dia ngebuat deck baru trus milih 6 plant, baru mulai gamenya
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.next();
+        // String name = scanner.next();
 
+        // Game game = new Game();
+        inventorydeck = new InventoryDeck<>();
+        boolean stateDeck = false;
+
+        while(!stateDeck) {
+            inventorydeck.printInventory();
+            inventorydeck.printDeck();
+
+            System.out.println("\nChoose your deck:");
+            System.out.println("1. Random deck");
+            System.out.println("2. Add plant");
+            System.out.println("3. Remove plant");
+            System.out.println("4. Replace plant");
+            System.out.println("5. Swap plant deck");
+            System.out.println("6. Swap plant inventory");
+            System.out.println("7. Clear deck");
+            System.out.println("8. Ready!");
+            System.out.println("\nInput command index: ");
+
+            int command = scanner.nextInt();
+            int idx1, idx2;
+            switch (command) {
+                case 1:
+                    inventorydeck.randomDeck();
+                    break;
+                case 2:
+                    System.out.println("Input inventory plant index: ");
+                    idx1 = scanner.nextInt();
+                    inventorydeck.addPlantToDeck(idx1-1);
+                    break;
+                case 3:
+                    System.out.println("Input deck plant index: ");
+                    idx1 = scanner.nextInt();
+                    inventorydeck.removePlantFromDeck(idx1-1);
+                    break;
+                case 4:
+                    System.out.println("Input inventory plant index: ");
+                    idx1 = scanner.nextInt();
+                    System.out.println("Input deck plant index: ");
+                    idx2 = scanner.nextInt();
+                    inventorydeck.replaceDeckWInventory(idx1-1, idx2-1);
+                    break;
+                case 5:
+                    System.out.println("Input deck plant index: ");
+                    idx1 = scanner.nextInt();
+                    System.out.println("Input deck plant index: ");
+                    idx2 = scanner.nextInt();
+                    inventorydeck.swapPlantDeck(idx1-1, idx2-1);
+                    break;
+                case 6:
+                    System.out.println("Input inventory plant index: ");
+                    idx1 = scanner.nextInt();
+                    System.out.println("Input inventory plant index: ");
+                    idx2 = scanner.nextInt();
+                    inventorydeck.swapPlantInventory(idx1-1, idx2-1);
+                    break;
+                case 7:
+                    inventorydeck.clearDeck();
+                    break;
+                case 8:
+                    if (inventorydeck.isDeckFull()) {
+                        stateDeck = true;
+                    } else {
+                        System.out.println("Deck is not ready");
+                    }
+                    break;
+                default:
+                    System.out.println("Wrong index, input again!");
+                    break;
+            }
+        }
         // Game game = new Game()
         // gameloop();
     }
@@ -65,8 +134,10 @@ public class App<T> {
         //     }
         // }
         // scanner.close();
-        Game game = new Game();
-        game.gameloop();
+        // Game game = new Game();
+        // game.gameloop();
+
+        startGame();
     }
 
 }
