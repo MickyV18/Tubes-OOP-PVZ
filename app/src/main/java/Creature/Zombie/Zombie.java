@@ -5,7 +5,7 @@ import Tiles.*;
 
 public abstract class Zombie extends Creature{
     private int slowed = 0;
-    public Zombie(String name, int health, int attack_damage, int attack_speed, boolean is_aquatic){
+    public Zombie(String name, int health, int attack_damage, float attack_speed, boolean is_aquatic){
         super(name, health, attack_damage, attack_speed, is_aquatic);
     }
 
@@ -19,6 +19,12 @@ public abstract class Zombie extends Creature{
 
     public void Slowed(){
         slowed = 3;
+        setAtkSpd(super.getAtkSpd() + (super.getAtkSpd() / 2));
+    }
+
+    public void unSlowed(){
+        setAtkSpd(2 / 3 * super.getAtkSpd());
+
     }
 
     public int getSlowed(){
