@@ -18,7 +18,7 @@ public class WaterTile extends Tile{
     
     public Plant getPlant() { return plant; }
     public void addPlant(Plant plant) {
-        if (this.plant == null && plant instanceof Lilypad) {
+        if (this.plant == null && plant instanceof Lilypad || plant instanceof TangleKelp) {
             lilyPlanted = true;
             this.lilyBoost = plant.getHealth();
         }

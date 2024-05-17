@@ -94,6 +94,7 @@ public class App<T> {
                     break;
             }
         }
+        scanner.close();
         // Game game = new Game()
         // gameloop();
     }

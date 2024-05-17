@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -155,7 +156,30 @@ public class Game {
                                 produceSun();
                             }
                             if ((int) ((water.getPlant().getTimeStamp() - currentTime) / 1000) % water.getPlant().getAtkSpd() == 0){
-                                // plant attack zombie
+                                if (water.getPlant() instanceof CherryBomb){
+                                    if (getTiles(water.getPlant(), j, i) != null){
+                                        for (Zombie zombie : getTiles(water.getPlant(), j, i).getZombies()) {
+                                            water.getPlant().attack(zombie);
+                                        }
+                                    }
+                                    else if (getTiles(water.getPlant(), j+1, i) != null){
+                                        for (Zombie zombie : getTiles(water.getPlant(), j+1, i).getZombies()) {
+                                            water.getPlant().attack(zombie);
+                                        }
+                                    }
+                                    else {
+                                        for (Zombie zombie : getTiles(water.getPlant(), j-1, i).getZombies()) {
+                                            water.getPlant().attack(zombie);
+                                        }
+                                    }
+                                }
+                                else {
+                                    if (getTiles(water.getPlant(), j, i) != null){
+                                        for (Zombie zombie : getTiles(water.getPlant(), j, i).getZombies()) {
+                                            water.getPlant().attack(zombie);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -166,12 +190,34 @@ public class Game {
                                 produceSun();
                             }
                             if ((int) ((ground.getPlant().getTimeStamp() - currentTime) / 1000) % ground.getPlant().getAtkSpd() == 0){
-                                // plant attack zombie
+                                if (ground.getPlant() instanceof CherryBomb){
+                                    if (getTiles(ground.getPlant(), j, i) != null){
+                                        for (Zombie zombie : getTiles(ground.getPlant(), j, i).getZombies()) {
+                                            ground.getPlant().attack(zombie);
+                                        }
+                                    }
+                                    else if (getTiles(ground.getPlant(), j+1, i) != null){
+                                        for (Zombie zombie : getTiles(ground.getPlant(), j+1, i).getZombies()) {
+                                            ground.getPlant().attack(zombie);
+                                        }
+                                    }
+                                    else {
+                                        for (Zombie zombie : getTiles(ground.getPlant(), j-1, i).getZombies()) {
+                                            ground.getPlant().attack(zombie);
+                                        }
+                                    }
+                                }
+                                else {
+                                    if (getTiles(ground.getPlant(), j, i) != null){
+                                        for (Zombie zombie : getTiles(ground.getPlant(), j, i).getZombies()) {
+                                            ground.getPlant().attack(zombie);
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
                 }
-
             }
             if (produceSun_time == 0 && gametimestamp < 100) {
                 produceSun();
@@ -347,5 +393,21 @@ public class Game {
 
     public void decreaseSun(int amount) {
         sun -= amount;
+    }
+
+    public Tile getTiles(Plant plant, int col, int row){
+        if (plant.getRange() == -1){
+            for (int j = 1; j < col; j++){
+                if (tiles[j][row].hasZombie()){
+                    return tiles[j][row];
+                }
+            }
+        }
+        else {
+            if (tiles[col+1][row].hasZombie()){
+                return tiles[col+1][row];
+            }
+        }
+        return null;
     }
 }
