@@ -118,12 +118,8 @@ public class Game {
             for (int i = 0; i < 6; i++) {
                 spawnZombieActivity(i);
                 for (int j = 1; j < 11; j++) {
-                    // j=0 cek ada zombie atau gak
-                    // cek di tile zombie ada plant atau gak
-                    // pake instance of
-                    // benerin zombie move
                     // plant hp 0 tapi mau nyerang (sinkron)
-
+                    // slowed zombie
                     if (tiles[i][j].getPlant() != null) {
                         if (tiles[i][j].getPlant().getHealth() != 0) {
                             if (tiles[i][j].getPlant() instanceof Sunflower
