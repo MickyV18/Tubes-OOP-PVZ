@@ -146,6 +146,7 @@ public class Game {
                                     if (getTiles(tiles[i][j].getPlant(), i, j) != null) {
                                         for (Zombie zombie : getTiles(tiles[i][j].getPlant(), i, j).getZombies()) {
                                             tiles[i][j].getPlant().attack(zombie);
+                                            System.out.println(zombie.getHealth());
                                         }
                                     }
                                 }
@@ -373,18 +374,16 @@ public class Game {
         sun -= amount;
     }
 
-    public Tile getTiles(Plant plant, int row, int col) {
-        // System.out.println(row);
-        // System.out.println(col);
+    public Tile getTiles(Plant plant, int col, int row) {
         if (plant.getRange() == -1) {
-            for (int j = 1; j < col; j++) {
-                if (tiles[row][j].hasZombie()) {
-                    return tiles[row][j];
+            for (int j > row; j < 10; j++) {
+                if (tiles[col][j].hasZombie()) {
+                    return tiles[col][j];
                 }
             }
         } else {
-            if (tiles[col + 1][row].hasZombie()) {
-                return tiles[row][col + 1];
+            if (tiles[col][row+1].hasZombie()) {
+                return tiles[col][row + 1];
             }
         }
         return null;
