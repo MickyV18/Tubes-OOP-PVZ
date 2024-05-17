@@ -157,6 +157,15 @@ public class Game {
                                         for (Zombie zombie : getTiles(water.getPlant(), j-1, i).getZombies()) {
                                             water.getPlant().attack(zombie);
                                         }
+                                        water.removePlant();
+                                    }
+                                }
+                                else if (water.getPlant() instanceof TangleKelp){
+                                    if (getTiles(water.getPlant(), j, i) != null){
+                                        for (Zombie zombie : getTiles(water.getPlant(), j, i).getZombies()) {
+                                            water.getPlant().attack(zombie);
+                                        }
+                                        water.removePlant();
                                     }
                                 }
                                 else {
@@ -191,6 +200,15 @@ public class Game {
                                         for (Zombie zombie : getTiles(ground.getPlant(), j-1, i).getZombies()) {
                                             ground.getPlant().attack(zombie);
                                         }
+                                    }
+                                    ground.removePlant();
+                                }
+                                else if (ground.getPlant() instanceof TangleKelp){
+                                    if (getTiles(ground.getPlant(), j, i) != null){
+                                        for (Zombie zombie : getTiles(ground.getPlant(), j, i).getZombies()) {
+                                            ground.getPlant().attack(zombie);
+                                        }
+                                        ground.removePlant();
                                     }
                                 }
                                 else {
