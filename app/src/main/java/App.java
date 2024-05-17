@@ -143,14 +143,14 @@ public class App<T> {
         // }
         // }
         // scanner.close();
-        // Game game = new Game();
-        // game.gameloop();
+        Game game = new Game();
+        game.gameloop();
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
         // System.out.println(command);
         // scanner.close();
-        startGame();
+        // startGame();
     }
 
 }
