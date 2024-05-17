@@ -91,12 +91,14 @@ public class App<T> {
                     } else {
                         System.out.println("Deck is not ready");
                     }
-                    Game game = new Game();
-                    game.gameloop();
                     break;
                 default:
                     System.out.println("Wrong index, input again!");
                     break;
+            }
+            if (stateDeck) {
+                Game game = new Game();
+                game.gameloop();
             }
         }
         scanner.close();

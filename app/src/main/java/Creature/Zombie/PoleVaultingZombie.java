@@ -6,7 +6,7 @@ import Creature.*;
 import Creature.Plant.*;
 import Tiles.*;
 
-public class PoleVaultingZombie extends Zombie implements Jump{
+public class PoleVaultingZombie extends Zombie implements Jump {
 
     private boolean jumped = false;
 
@@ -14,17 +14,19 @@ public class PoleVaultingZombie extends Zombie implements Jump{
         super("Pole Vaulting Zombie", 175, 100, 1, false);
     }
 
-    public void jump(Tile[][] tiles, int x, int y) {
+    public void jump(Tile tileawal, Tile tileplant, Tile tileakhir, int x, int y) {
         // posisi zombie jadi pindah 2 tile dan plant yg dilompatin mati
-        for (Zombie zombie : tiles[x][y].getZombies()) {
-            if (zombie.getName() == "Pole Vaulting Zombie") {
-            tiles[x - 2][y].addZombie(zombie);
-            tiles[x][y].removeZombie(zombie);
+        List<Zombie> zombies = new ArrayList<>(tileawal.getZombies());
+        for (Zombie zombie : zombies) {
+            if (zombie instanceof PoleVaultingZombie) {
+                // System.out.println(x + " " + y + " ");
+                tileakhir.addZombie(zombie);
+                tileawal.removeZombie(zombie);
             }
         }
-        if (tiles[x - 1][y].getPlant() != null) {
-            tiles[x - 1][y].removePlant();
-        }
+        // System.out.println(tileplant.getPlant());
+        tileplant.removePlant();
+        // System.out.println(tileplant.getPlant());
         jumped = true;
     }
 
