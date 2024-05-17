@@ -91,12 +91,14 @@ public class App<T> {
                     } else {
                         System.out.println("Deck is not ready");
                     }
-                    Game game = new Game();
-                    game.gameloop();
                     break;
                 default:
                     System.out.println("Wrong index, input again!");
                     break;
+            }
+            if (stateDeck) {
+                Game game = new Game();
+                game.gameloop();
             }
         }
         scanner.close();
@@ -141,14 +143,14 @@ public class App<T> {
         // }
         // }
         // scanner.close();
-        Game game = new Game();
-        game.gameloop();
+        // Game game = new Game();
+        // game.gameloop();
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
         // System.out.println(command);
         // scanner.close();
-        // startGame();
+        startGame();
     }
 
 }
