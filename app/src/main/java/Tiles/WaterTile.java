@@ -5,7 +5,7 @@ import java.util.List;
 import Creature.Plant.*;
 import Creature.Zombie.Zombie;
 
-public class WaterTile extends Tile{
+public class WaterTile extends Tile {
     private Plant plant;
     private boolean lilyPlanted;
     private int lilyBoost;
@@ -15,18 +15,18 @@ public class WaterTile extends Tile{
         this.plant = null;
         this.lilyPlanted = false;
     }
-    
-    public Plant getPlant() { return plant; }
+
     public void addPlant(Plant plant) {
         if (this.plant == null && plant instanceof Lilypad || plant instanceof TangleKelp) {
             lilyPlanted = true;
             this.lilyBoost = plant.getHealth();
-        }
-        else if (lilyPlanted) {
+        } else if (lilyPlanted) {
             this.plant = plant;
             this.plant.setHealth(plant.getHealth() + this.lilyBoost);
         }
     }
-    public void removePlant(Plant plant) { this.plant = null; }
-    public boolean isLilyPlanted() { return lilyPlanted; }
+
+    public boolean isLilyPlanted() {
+        return lilyPlanted;
+    }
 }

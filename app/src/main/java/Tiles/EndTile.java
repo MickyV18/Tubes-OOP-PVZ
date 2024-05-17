@@ -1,5 +1,7 @@
 package Tiles;
 
+import Creature.Plant.Plant;
+
 public class EndTile extends Tile {
     private boolean reached;
 
@@ -15,5 +17,4 @@ public class EndTile extends Tile {
     public void setReached(boolean reached) {
         this.reached = reached;
     }
-
 }
