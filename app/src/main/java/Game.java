@@ -162,12 +162,9 @@ public class Game {
                             if (zombie.getHealth() != 0) {
                                 if ((currentTime - zombie.getTimeStamp()) / 1000 != 0) {
                                     if ((currentTime - zombie.getTimeStamp()) / 1000 >= zombie.getAtkSpd()) {
-                                        System.out.println("MASUK 1");
                                         if ((tiles[i][j - 1].getPlant() != null)) {
-                                            System.out.println("MASUK 2");
                                             ZombieActivity(zombie, i, j);
                                         } else if ((tiles[i][j].getPlant() != null)) {
-                                            System.out.println("MASUK 3");
                                             ZombieActivity(zombie, i, j + 1);
                                         }
                                     }
