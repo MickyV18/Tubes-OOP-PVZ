@@ -148,14 +148,24 @@ public class Game {
                                 if (getTiles(tiles[j][i].getPlant(), j, i) != null) {
                                     for (Zombie zombie : getTiles(tiles[j][i].getPlant(), j, i).getZombies()) {
                                         tiles[j][i].getPlant().attack(zombie);
+                                        tiles[j][i].removePlant();
                                     }
                                 } else if (getTiles(tiles[j][i].getPlant(), j + 1, i) != null) {
                                     for (Zombie zombie : getTiles(tiles[j][i].getPlant(), j + 1, i).getZombies()) {
                                         tiles[j][i].getPlant().attack(zombie);
+                                        tiles[j][i].removePlant();
                                     }
                                 } else {
                                     for (Zombie zombie : getTiles(tiles[j][i].getPlant(), j - 1, i).getZombies()) {
                                         tiles[j][i].getPlant().attack(zombie);
+                                        tiles[j][i].removePlant();
+                                    }
+                                }
+                            } else if (tiles[j][i].getPlant() instanceof Tanglekelp) {
+                                if (getTiles(tiles[j][i].getPlant(), j, i) != null) {
+                                    for (Zombie zombie : getTiles(tiles[j][i].getPlant(), j, i).getZombies()) {
+                                        tiles[j][i].getPlant().attack(zombie);
+                                        tiles[j][i].removePlant();
                                     }
                                 }
                             } else {
