@@ -137,9 +137,12 @@ public class Game {
                     // slowed zombie
                     if (tiles[i][j].getPlant() != null) {
                         if (tiles[i][j].getPlant().getHealth() != 0) {
-                            if (tiles[i][j].getPlant() instanceof Sunflower
-                                    && (int) ((tiles[i][j].getPlant().getTimeStamp() - currentTime) / 1000) >= 3) {
+                            // System.out.println("sun= " + getSun());
+                            if (tiles[i][j].getPlant().getName() == "Sunflower"
+                                    && ((currentTime - tiles[i][j].getPlant().getTimeStamp()) / 1000 >= 3)) {
+                                tiles[i]
                                 produceSun();
+                                System.out.println("sun= " + getSun());
                             }
                             if ((int) ((tiles[i][j].getPlant().getTimeStamp() - currentTime) / 1000)
                                     % tiles[i][j].getPlant().getAtkSpd() == 0) {
@@ -218,10 +221,11 @@ public class Game {
                     }
                 }
             }
-            if (produceSun_time == 0 && gametimestamp < 100) {
-                produceSun();
-                produceSun_time = random.nextInt(5, 10);
-            }
+            // if (produceSun_time == 0 && gametimestamp < 100) {
+            //     produceSun();
+            //     produceSun_time = random.nextInt(5, 10);
+            //     System.out.println("sun: " + getSun());
+            // }
 
             // isZeroZombie();
             isZombieInEndTile();
@@ -266,12 +270,12 @@ public class Game {
                     tiles[i][10].addZombie(zombie3);
                     flag--;
                 }
-                Peashooter peashooter = new Peashooter();
-                tiles[i][7].addPlant(peashooter);
+                Sunflower sunflower = new Sunflower();
+                tiles[i][2].addPlant(sunflower);
                 // Peashooter peashooter3 = new Peashooter();
                 // tiles[i][2].addPlant(peashooter3);
-                Peashooter peashooter2 = new Peashooter();
-                tiles[i][4].addPlant(peashooter2);
+                // Peashooter peashooter2 = new Peashooter();
+                // tiles[i][4].addPlant(peashooter2);
                 // System.out.println( tiles[i][8].getPlant());
 
                 List<Zombie> zombies = new ArrayList<>(tiles[i][10].getZombies());
