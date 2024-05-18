@@ -1,15 +1,12 @@
 package Creature;
 
-import Creature.Zombie.Zombie;
-import Creature.Plant.Plant;
-
 public abstract class Creature {
     private String name;
     private int health;
     private int attack_damage;
     private float attack_speed;
     private boolean is_aquatic;
-    private long time_stamp = System.currentTimeMillis();
+    private long time_stamp;
 
     public Creature(String name, int health, int attack_damage, float attack_speed, boolean is_aquatic) {
         this.name = name;
@@ -17,6 +14,7 @@ public abstract class Creature {
         this.attack_damage = attack_damage;
         this.attack_speed = attack_speed;
         this.is_aquatic = is_aquatic;
+        time_stamp = System.currentTimeMillis();
     }
 
     public long getTimeStamp() {
@@ -41,6 +39,9 @@ public abstract class Creature {
 
     public float getAtkSpd() {
         return attack_speed;
+    }
+    public void setAtkDmg(int attack){
+        attack_damage = attack;
     }
     public void setAtkSpd(float attack_speed) {
         this.attack_speed = attack_speed;

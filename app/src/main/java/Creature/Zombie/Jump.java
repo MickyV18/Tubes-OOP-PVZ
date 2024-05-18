@@ -1,6 +1,4 @@
 package Creature.Zombie;
-import Creature.*;
-import Creature.Plant.*;
 import Tiles.Tile;
 
 public interface Jump {

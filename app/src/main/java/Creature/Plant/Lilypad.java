@@ -1,9 +1,6 @@
 package Creature.Plant;
-import Creature.Zombie.*;
-import Creature.*;
 
 public class Lilypad extends Plant {
-    private boolean hasPlanted;
     private Plant plant;
 
     public Lilypad(){

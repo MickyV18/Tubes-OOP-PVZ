@@ -21,6 +21,10 @@ public abstract class Tile {
         this.zombies.remove(zombie);
     }
 
+    public void removeAllZombie() {        
+        zombies.clear();
+    }
+
     public List<Zombie> getZombies() {
         return zombies;
     }

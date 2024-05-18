@@ -1,6 +1,5 @@
 package Creature.Plant;
 import Creature.Zombie.*;
-import Creature.*;
 
 public class SnowPea extends Plant{
     public SnowPea(){
@@ -9,6 +8,7 @@ public class SnowPea extends Plant{
 
     public void attack (Zombie zombie){
         super.attack(zombie);
+        System.out.println("KEATTACK");
         zombie.Slowed();
     }
 }

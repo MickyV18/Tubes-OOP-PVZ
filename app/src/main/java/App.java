@@ -1,13 +1,13 @@
 
 import java.util.Scanner;
 
+import Inventory_Deck.InventoryDeck;
+
 public class App<T> {
 
     private static String state;
     private static boolean over = false;
     private static InventoryDeck inventorydeck;
-    // private List<List<T>> Sessions;
-
     public static String getState() {
         return state;
     }
@@ -187,8 +187,8 @@ public class App<T> {
         // }
         // }
         // scanner.close();
-        // Game game = new Game();
-        // game.gameloop();
+        Game game = new Game();
+        game.gameloop();
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();

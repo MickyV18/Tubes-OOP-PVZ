@@ -3,8 +3,6 @@ package Creature.Zombie;
 import java.util.ArrayList;
 import java.util.List;
 
-import Creature.*;
-import Creature.Plant.*;
 import Tiles.Tile;
 
 public class DolphinRiderZombie extends Zombie implements Jump {
@@ -18,7 +16,7 @@ public class DolphinRiderZombie extends Zombie implements Jump {
         // posisi zombie jadi pindah 2 tile dan plant yg dilompatin mati
         List<Zombie> zombies = new ArrayList<>(tileawal.getZombies());
         for (Zombie zombie : zombies) {
-            if (zombie instanceof PoleVaultingZombie) {
+            if (zombie instanceof DolphinRiderZombie) {
                 System.out.println(x + " " + y + " ");
                 tileakhir.addZombie(zombie);
                 tileawal.removeZombie(zombie);
