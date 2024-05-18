@@ -17,10 +17,12 @@ public class WaterTile extends Tile {
     }
 
     public void addPlant(Plant plant) {
-        if (super.getPlant() == null && plant instanceof Lilypad || plant instanceof TangleKelp) {
+        if ((super.getPlant() == null && plant instanceof Lilypad) || plant instanceof TangleKelp) {
             lilyPlanted = true;
             this.lilyBoost = plant.getHealth();
+            super.addPlant(plant);
         } else if (lilyPlanted) {
+            super.removePlant();
             super.addPlant(plant);
             super.getPlant().setHealth(plant.getHealth() + this.lilyBoost);
         }
@@ -29,4 +31,9 @@ public class WaterTile extends Tile {
     public boolean isLilyPlanted() {
         return lilyPlanted;
     }
+
+    public void removePlant() {
+        super.removePlant();
+        this.lilyPlanted = false;
+    }   
 }

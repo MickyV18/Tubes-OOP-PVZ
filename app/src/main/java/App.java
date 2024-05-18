@@ -1,13 +1,13 @@
 
 import java.util.Scanner;
 
+import Inventory_Deck.InventoryDeck;
+
 public class App<T> {
 
     private static String state;
     private static boolean over = false;
     private static InventoryDeck inventorydeck;
-    // private List<List<T>> Sessions;
-
     public static String getState() {
         return state;
     }
