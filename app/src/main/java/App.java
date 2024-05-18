@@ -115,6 +115,10 @@ public class App<T> {
                     System.out.println("Wrong index, input again!");
                     break;
             }
+            if (stateDeck) {
+                Game game = new Game();
+                game.gameloop();
+            }
         }
         scanner.close();
         // Game game = new Game()
