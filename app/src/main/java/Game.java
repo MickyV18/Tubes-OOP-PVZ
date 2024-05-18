@@ -134,6 +134,7 @@ public class Game {
                             if (tiles[i][j].getPlant() instanceof Sunflower
                                     && ((currentTime - (tiles[i][j].getPlant().getTimeStamp())) / 1000) >= 3) {
                                 produceSun();
+                                // System.out.println("sunflower: " + getSun());
                                 tiles[i][j].getPlant().setTimeStamp(currentTime);
                             }
                             if (((currentTime - (tiles[i][j].getPlant().getTimeStamp())) / 1000)
