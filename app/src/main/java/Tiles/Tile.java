@@ -21,6 +21,10 @@ public abstract class Tile {
         this.zombies.remove(zombie);
     }
 
+    public void removeAllZombie() {        
+        zombies.clear();
+    }
+
     public List<Zombie> getZombies() {
         return zombies;
     }
@@ -43,7 +47,6 @@ public abstract class Tile {
     }
 
     public void removePlant() {
-        
         // System.out.println(plant);
         this.plant = null;
         // System.out.println(plant);
