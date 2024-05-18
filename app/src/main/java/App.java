@@ -1,8 +1,5 @@
 
 import java.util.Scanner;
-import java.lang.System;
-
-import Creature.Plant.Plant;
 
 public class App<T> {
 
@@ -54,19 +51,38 @@ public class App<T> {
                 case 2:
                     System.out.println("Input inventory plant index: ");
                     idx1 = scanner.nextInt();
-                    inventorydeck.addPlantToDeck(idx1 - 1);
+                    if (inventorydeck.isDeckFull()) {
+                        System.out.println("Deck full!");
+                    } else if (inventorydeck.isInDeck(idx1-1)) {
+                        System.out.println("Plant already in deck");
+                    } else {
+                        inventorydeck.addPlantToDeck(idx1 - 1);
+                    }
                     break;
                 case 3:
-                    System.out.println("Input deck plant index: ");
-                    idx1 = scanner.nextInt();
-                    inventorydeck.removePlantFromDeck(idx1 - 1);
+                    if (inventorydeck.isDeckEmpty()) {
+                        System.out.println("Deck is empty!");
+                    } else {
+                        System.out.println("Input deck plant index: ");
+                        idx1 = scanner.nextInt();
+                        inventorydeck.removePlantFromDeck(idx1 - 1);
+                    }
                     break;
                 case 4:
-                    System.out.println("Input inventory plant index: ");
-                    idx1 = scanner.nextInt();
-                    System.out.println("Input deck plant index: ");
-                    idx2 = scanner.nextInt();
-                    inventorydeck.replaceDeckWInventory(idx1 - 1, idx2 - 1);
+                    if (inventorydeck.isDeckEmpty()) {
+                        System.out.println("Deck is empty!");
+                    } else {
+                        System.out.println("Input inventory plant index: ");
+                        idx1 = scanner.nextInt();
+                        if (!inventorydeck.isInDeck(idx1-1)) {
+                            System.out.println("Input deck plant index: ");
+                            idx2 = scanner.nextInt();
+                            inventorydeck.replaceDeckWInventory(idx1 - 1, idx2 - 1);
+                        } else {
+                            System.out.println("Plant already in deck");
+                        }
+                        
+                    }
                     break;
                 case 5:
                     System.out.println("Input deck plant index: ");
@@ -88,6 +104,9 @@ public class App<T> {
                 case 8:
                     if (inventorydeck.isDeckFull()) {
                         stateDeck = true;
+                        Game game = new Game();
+                        game.gameloop();
+                        break;
                     } else {
                         System.out.println("Deck is not ready");
                     }
