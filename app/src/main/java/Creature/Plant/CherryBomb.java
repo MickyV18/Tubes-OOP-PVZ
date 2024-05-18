@@ -1,5 +1,4 @@
 package Creature.Plant;
-import Creature.Zombie.*;
 
 public class CherryBomb extends Plant{
     public CherryBomb(){
