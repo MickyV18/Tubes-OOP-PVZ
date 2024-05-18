@@ -1,6 +1,4 @@
 package Creature.Zombie;
-import Creature.*;
-import Creature.Plant.*;
 
 public class BucketheadZombie extends Zombie {
     public BucketheadZombie(){

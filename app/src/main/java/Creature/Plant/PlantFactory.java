@@ -1,6 +1,4 @@
 package Creature.Plant;
-import Creature.Zombie.*;
-import Creature.*;
 
 public class PlantFactory {
     public static Plant createPlant(String plantType) {

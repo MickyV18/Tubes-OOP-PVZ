@@ -2,8 +2,6 @@ package Creature.Zombie;
 
 import java.util.ArrayList;
 import java.util.List;
-import Creature.*;
-import Creature.Plant.*;
 import Tiles.*;
 
 public class PoleVaultingZombie extends Zombie implements Jump {

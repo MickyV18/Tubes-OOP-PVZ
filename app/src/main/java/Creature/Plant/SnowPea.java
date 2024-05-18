@@ -1,6 +1,5 @@
 package Creature.Plant;
 import Creature.Zombie.*;
-import Creature.*;
 
 public class SnowPea extends Plant{
     public SnowPea(){

@@ -1,5 +1,4 @@
 package Creature.Zombie;
-import Creature.*;
 import Creature.Plant.*;
 
 public class JackInTheBoxZombie extends Zombie {

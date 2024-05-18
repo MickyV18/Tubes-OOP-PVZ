@@ -1,7 +1,5 @@
 package Tiles;
 
-import Creature.Plant.Plant;
-
 public class EndTile extends Tile {
     // private boolean reached;
 

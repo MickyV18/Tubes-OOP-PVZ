@@ -142,15 +142,19 @@ public class Game {
                                     % inTilePlant.getAtkSpd() == 0 && (currentTime - inTilePlant.getTimeStamp()) / 1000 != 0) {
 
                                 if (inTilePlant instanceof CherryBomb) {
+                                    
                                     if (getTiles(inTilePlant, i, j) != null) {
+                                        System.out.println("naomi");
                                         List<Zombie> zombies = new ArrayList<>(
                                                 getTiles(inTilePlant, i, j).getZombies());
                                         for (Zombie zombie : zombies) {
+                                            System.out.println("health zombie sebelum: " + zombie.getHealth());
                                             inTilePlant.attack(zombie);
+                                            System.out.println("health zombie setelah: " + zombie.getHealth());
                                         }
                                         inTilePlant.setTimeStamp(currentTime);
 
-                                    } else if (getTiles(inTilePlant, i, j + 1) != null) {
+                                    } else if (getTiles(inTilePlant, i + 1, j) != null) {
                                         List<Zombie> zombies = new ArrayList<>(
                                                 getTiles(inTilePlant, i, j + 1).getZombies());
                                         for (Zombie zombie : zombies) {
@@ -160,7 +164,7 @@ public class Game {
 
                                     } else {
                                         List<Zombie> zombies = new ArrayList<>(
-                                                getTiles(inTilePlant, i, j - 1).getZombies());
+                                                getTiles(inTilePlant, i - 1, j).getZombies());
                                         for (Zombie zombie : zombies) {
                                             inTilePlant.attack(zombie);
                                         }
@@ -298,9 +302,9 @@ public class Game {
                 // Peashooter peashooter = new Peashooter();
                 // tiles[i][7].addPlant(peashooter);
                 // Peashooter peashooter3 = new Peashooter();
-                // tiles[i][2].addPlant(peashooter3);
-                Peashooter peashooter2 = new Peashooter();
-                tiles[i][4].addPlant(peashooter2);
+                // tiles[i][4].addPlant(peashooter3);
+                CherryBomb cher = new CherryBomb();
+                tiles[i][8].addPlant(cher);
                 // System.out.println( tiles[i][8].getPlant());
 
                 List<Zombie> zombies = new ArrayList<>(tiles[i][10].getZombies());
@@ -345,7 +349,7 @@ public class Game {
 
     public Zombie spawnZombie() {
         Random random = new Random();
-        int zombieInt = 5;
+        int zombieInt = 8;
         // int zombieInt = random.nextInt(2, 2);
         if (zombieInt == 1) {
             DolphinRiderZombie zombie = new DolphinRiderZombie();

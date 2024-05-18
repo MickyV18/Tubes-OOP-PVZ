@@ -1,8 +1,5 @@
 package Creature;
 
-import Creature.Zombie.Zombie;
-import Creature.Plant.Plant;
-
 public abstract class Creature {
     private String name;
     private int health;

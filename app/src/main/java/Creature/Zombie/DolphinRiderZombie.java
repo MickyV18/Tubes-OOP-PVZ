@@ -3,8 +3,6 @@ package Creature.Zombie;
 import java.util.ArrayList;
 import java.util.List;
 
-import Creature.*;
-import Creature.Plant.*;
 import Tiles.Tile;
 
 public class DolphinRiderZombie extends Zombie implements Jump {
