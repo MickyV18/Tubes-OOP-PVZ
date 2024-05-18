@@ -40,6 +40,9 @@ public abstract class Creature {
     public float getAtkSpd() {
         return attack_speed;
     }
+    public void setAtkDmg(int attack){
+        attack_damage = attack;
+    }
     public void setAtkSpd(float attack_speed) {
         this.attack_speed = attack_speed;
     }

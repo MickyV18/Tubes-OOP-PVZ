@@ -6,6 +6,10 @@ public class NewspaperZombie extends Zombie {
     }
 
     public void angry() {
-        super.setAtkSpd(50);
+        super.setAtkDmg(200);
+    }
+
+    public boolean isAngry() {
+        return super.getHealth() <= 100;
     }
 }
