@@ -19,14 +19,11 @@ public class PoleVaultingZombie extends Zombie implements Jump {
         List<Zombie> zombies = new ArrayList<>(tileawal.getZombies());
         for (Zombie zombie : zombies) {
             if (zombie instanceof PoleVaultingZombie) {
-                // System.out.println(x + " " + y + " ");
                 tileakhir.addZombie(zombie);
                 tileawal.removeZombie(zombie);
             }
         }
-        // System.out.println(tileplant.getPlant());
         tileplant.removePlant();
-        // System.out.println(tileplant.getPlant());
         jumped = true;
     }
 
