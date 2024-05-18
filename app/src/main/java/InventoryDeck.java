@@ -90,7 +90,11 @@ public class InventoryDeck {
         return deck.size() == 6;
     }
 
-    public boolean isIn(int idx) {
+    public boolean isDeckEmpty() {
+        return deck.isEmpty();
+    }
+
+    public boolean isInDeck(int idx) {
         return deck.contains(inventory.get(idx));
     }
 
