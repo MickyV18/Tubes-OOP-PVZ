@@ -64,7 +64,8 @@ public class Menu extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGameButton) {
-            System.out.println("Start Game !");
+            new Inventory();
+            this.setVisible(false);
         }
         else if (e.getSource() == helpButton) {
             new Help();
