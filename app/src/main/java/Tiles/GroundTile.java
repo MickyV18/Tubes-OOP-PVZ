@@ -1,7 +1,5 @@
 package Tiles;
 
-import Creature.Plant.*;
-
 public class GroundTile extends Tile {
     // private Plant plant;
 

@@ -323,9 +323,10 @@ public class Game {
                 // Peashooter peashooter = new Peashooter();
                 // tiles[i][7].addPlant(peashooter);
                 // Peashooter peashooter3 = new Peashooter();
-                // tiles[i][2].addPlant(peashooter3);
-                // Peashooter peashooter2 = new Peashooter();
-                // tiles[i][4].addPlant(peashooter2);
+                // tiles[i][4].addPlant(peashooter3);
+                CherryBomb cher = new CherryBomb();
+                tiles[i][8].addPlant(cher);
+                // System.out.println( tiles[i][8].getPlant());
 
                 List<Zombie> zombies = new ArrayList<>(tiles[i][9].getZombies());
                 for (Zombie zombiecheck : zombies) {
@@ -449,7 +450,7 @@ public class Game {
 
     public Tile getTiles(Plant plant, int col, int row) {
         if (plant.getRange() == -1) {
-            for (int j = row; j < 10; j++) {
+            for (int j = row + 1; j < 10; j++) {
                 if (tiles[col][j].hasZombie()) {
                     return tiles[col][j];
                 }

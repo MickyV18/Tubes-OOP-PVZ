@@ -1,7 +1,6 @@
 package Creature.Zombie;
 import Creature.*;
 import Creature.Plant.*;
-import Tiles.*;
 
 public abstract class Zombie extends Creature{
     private int slowed = -1;

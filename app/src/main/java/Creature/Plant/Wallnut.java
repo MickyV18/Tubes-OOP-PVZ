@@ -1,6 +1,4 @@
 package Creature.Plant;
-import Creature.Zombie.*;
-import Creature.*;
 
 public class Wallnut extends Plant {
     public Wallnut(){

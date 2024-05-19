@@ -1,6 +1,4 @@
 package Creature.Plant;
-import Creature.Zombie.*;
-import Creature.*;
 
 public class Repeater extends Plant{
     public Repeater(){

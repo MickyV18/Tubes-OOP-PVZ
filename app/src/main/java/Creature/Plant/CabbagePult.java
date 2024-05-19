@@ -1,6 +1,4 @@
 package Creature.Plant;
-import Creature.Zombie.*;
-import Creature.*;
 
 public class CabbagePult extends Plant{
     public CabbagePult(){

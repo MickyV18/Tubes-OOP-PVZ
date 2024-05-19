@@ -1,6 +1,5 @@
 package Creature.Plant;
 import Creature.Zombie.*;
-import Creature.*;
 
 public class TangleKelp extends Plant{
     public TangleKelp(){

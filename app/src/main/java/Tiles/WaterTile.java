@@ -1,9 +1,6 @@
 package Tiles;
 
-import java.util.List;
-
 import Creature.Plant.*;
-import Creature.Zombie.Zombie;
 
 public class WaterTile extends Tile {
     // private Plant plant;
