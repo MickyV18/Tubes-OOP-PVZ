@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class PlantList extends JFrame implements ActionListener {
+public class HelpUI extends JFrame implements ActionListener {
     JButton backButton;
     
-    public PlantList() {
+    public HelpUI() {
         // Setting up the frame
         this.setLayout(null);
         this.setSize(880, 660);
@@ -31,7 +31,7 @@ public class PlantList extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            new Menu();
+            new MenuUI();
             this.setVisible(false);
         }
     }

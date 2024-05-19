@@ -7,7 +7,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-public class Menu extends JFrame implements ActionListener{
+public class MenuUI extends JFrame implements ActionListener{
     // private Image background;
     public JButton startGameButton;
     public JButton helpButton;
@@ -15,7 +15,7 @@ public class Menu extends JFrame implements ActionListener{
     public JButton zombieListButton;
     public JButton exitButton;
     
-    public Menu() {
+    public MenuUI() {
         // SUPER!
         super();
 
@@ -64,19 +64,19 @@ public class Menu extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGameButton) {
-            new Inventory();
+            new InventoryUI();
             this.setVisible(false);
         }
         else if (e.getSource() == helpButton) {
-            new Help();
+            new HelpUI();
             this.setVisible(false);
         }
         else if (e.getSource() == plantListButton) {
-            new PlantList();
+            new PlantListUI();
             this.setVisible(false);
         }
         else if (e.getSource() == zombieListButton) {
-            new ZombieList();
+            new ZombieListUI();
             this.setVisible(false);
         }
         else if (e.getSource() == exitButton) {
