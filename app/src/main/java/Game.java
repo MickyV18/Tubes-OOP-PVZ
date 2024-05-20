@@ -32,7 +32,7 @@ public class Game {
 
     public Game() {
         currentTime = System.currentTimeMillis();
-        sun = 25;
+        sun = 50;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 11; j++) {
                 if (j == 0) {
@@ -61,9 +61,18 @@ public class Game {
         while (!isGameover()) {
             setter++;
             if (setter % 2 == 0) {
+
+                // Produce Sun dari game
                 produceSun_time--;
+                if (produceSun_time == 0 && gametimestamp < 100) {
+                    produceSun();
+                    produceSun_time = random.nextInt(5, 10);
+                }
+
+                // nambah waktu permainan
                 gametimestamp++;
-                // System.out.println(sun);
+
+                // mencetak map
                 System.out.println();
                 for (int i = 0; i < 6; i++) {
                     for (int j = 0; j < 11; j++) {
@@ -122,7 +131,7 @@ public class Game {
             }
 
             for (int i = 0; i < 6; i++) {
-                if (setter % 2 == 0) {
+                if (setter % 6 == 0) {
                     spawnZombieActivity(i);
                 }
                 for (int j = 1; j < 11; j++) {
@@ -136,53 +145,52 @@ public class Game {
                                     && ((currentTime - (inTilePlant.getTimeStamp())) / 1000) >= 3) {
                                 produceSun();
                                 inTilePlant.setTimeStamp(currentTime);
-                            }
-                            System.out.println(inTilePlant.getAtkSpd());
-                            System.out.println("Waktu Nyerang: "
-                                    + ((currentTime - inTilePlant.getTimeStamp()) / 1000) % inTilePlant.getAtkSpd());
-                            if (((currentTime - (inTilePlant.getTimeStamp())) / 1000)
+                            } else if (((currentTime - (inTilePlant.getTimeStamp())) / 1000)
                                     % inTilePlant.getAtkSpd() == 0
                                     && (currentTime - inTilePlant.getTimeStamp()) / 1000 != 0) {
                                 System.out.println("NOUMI");
-                                if (inTilePlant instanceof Squash || inTilePlant instanceof TangleKelp || inTilePlant instanceof CherryBomb) {
+                                if (inTilePlant instanceof Squash || inTilePlant instanceof CherryBomb
+                                        || inTilePlant instanceof TangleKelp) {
                                     boolean explode = false;
                                     if (getTiles(inTilePlant, i, j) != null) {
                                         CountZombie -= getTiles(inTilePlant, i, j).getZombies().size();
                                         getTiles(inTilePlant, i, j).removeAllZombie();
                                         explode = true;
-                                    }
-                                    else if (getTiles(inTilePlant, i, j-1) != null){
-                                        CountZombie -= getTiles(inTilePlant, i, j-1).getZombies().size();
-                                        getTiles(inTilePlant, i, j-1).removeAllZombie();
+                                    } else if (getTiles(inTilePlant, i, j - 1) != null) {
+                                        CountZombie -= getTiles(inTilePlant, i, j - 1).getZombies().size();
+                                        getTiles(inTilePlant, i, j - 1).removeAllZombie();
                                         explode = true;
                                     }
-                                    if (explode){
+                                    if (explode) {
                                         tiles[i][j].removePlant();
                                     }
-                                    if (inTilePlant instanceof CherryBomb){
+                                    if (inTilePlant instanceof CherryBomb) {
                                         if (i == 0) {
                                             if (getTiles(inTilePlant, i + 1, j) != null) {
                                                 CountZombie -= getTiles(inTilePlant, i, j).getZombies().size();
                                                 getTiles(inTilePlant, i + 1, j).removeAllZombie();
+                                                tiles[i][j].removePlant();
                                             }
                                         } else if (i == 5) {
                                             if (getTiles(inTilePlant, i - 1, j) != null) {
                                                 CountZombie -= getTiles(inTilePlant, i, j).getZombies().size();
                                                 getTiles(inTilePlant, i - 1, j).removeAllZombie();
+                                                tiles[i][j].removePlant();
                                             }
                                         } else {
                                             if (getTiles(inTilePlant, i + 1, j) != null) {
                                                 CountZombie -= getTiles(inTilePlant, i, j).getZombies().size();
                                                 getTiles(inTilePlant, i, j).removeAllZombie();
+                                                tiles[i][j].removePlant();
                                             } else if (getTiles(inTilePlant, i - 1, j) != null) {
                                                 CountZombie -= getTiles(inTilePlant, i, j).getZombies().size();
                                                 getTiles(inTilePlant, i - 1, j).removeAllZombie();
+                                                tiles[i][j].removePlant();
                                             }
                                         }
-                                        tiles[i][j].removePlant();
-                                    }                                    
-                                }
-                                else {
+                                    }
+                                    tiles[i][j].removePlant();
+                                } else {
                                     if (getTiles(inTilePlant, i, j) != null) {
                                         List<Zombie> zombies = new ArrayList<>(
                                                 getTiles(inTilePlant, i, j).getZombies());
@@ -190,7 +198,6 @@ public class Game {
                                             inTilePlant.attack(zombie);
                                         }
                                         inTilePlant.setTimeStamp(currentTime);
-
                                     }
                                 }
                                 System.out.println(CountZombie);
@@ -258,6 +265,7 @@ public class Game {
                     }
                 }
             }
+
             if (produceSun_time == 0 && gametimestamp < 100) {
                 produceSun();
                 produceSun_time = random.nextInt(5, 10);
@@ -320,10 +328,10 @@ public class Game {
                 // tiles[i][7].addPlant(wallnut2);
                 // Wallnut wallnut3 = new Wallnut();
                 // tiles[i][6].addPlant(wallnut3);
-                TangleKelp cherrybomb = new TangleKelp();
-                tiles[i][7].addPlant(cherrybomb);
-                // Sunflower sunflower = new Sunflower();
-                // tiles[i][9].addPlant(sunflower);
+                // TangleKelp cherrybomb = new TangleKelp();
+                // tiles[i][7].addPlant(cherrybomb);
+                Sunflower sunflower = new Sunflower();
+                tiles[i][9].addPlant(sunflower);
                 // System.out.println(zombie.getName());
                 // Squash squash = new Squash();
                 // tiles[i][7].addPlant(squash);
@@ -355,16 +363,16 @@ public class Game {
             DolphinRiderZombie dolphinRiderZombie = (DolphinRiderZombie) zombie;
             if (!dolphinRiderZombie.hasJumped()) {
                 System.out.println("MASUK ATTACK 2");
-                dolphinRiderZombie.jump(tiles[x_position][y_position], tiles[x_position][y_position - 1],
-                        tiles[x_position][y_position - 2], x_position, y_position);
+                dolphinRiderZombie.jump(tiles[x_position][y_position], tiles[x_position][y_position - 2], x_position,
+                        y_position);
             } else {
                 zombie.attack(tiles[x_position][y_position - 1].getPlant());
             }
         } else if (zombie instanceof PoleVaultingZombie) {
             PoleVaultingZombie poleVaultingZombie = (PoleVaultingZombie) zombie;
             if (!poleVaultingZombie.hasJumped()) {
-                poleVaultingZombie.jump(tiles[x_position][y_position], tiles[x_position][y_position - 1],
-                        tiles[x_position][y_position - 2], x_position, y_position);
+                poleVaultingZombie.jump(tiles[x_position][y_position], tiles[x_position][y_position - 2], x_position,
+                        y_position);
             } else {
                 zombie.attack(tiles[x_position][y_position - 1].getPlant());
             }
@@ -378,7 +386,7 @@ public class Game {
 
     public Zombie spawnZombie() {
         Random random = new Random();
-        int zombieInt = 2;
+        int zombieInt = 1;
         // int zombieInt = random.nextInt(2, 2);
         if (zombieInt == 1) {
             DolphinRiderZombie zombie = new DolphinRiderZombie();

@@ -12,7 +12,7 @@ public class DolphinRiderZombie extends Zombie implements Jump {
         super("Dolphin Rider Zombie", 175, 100, 1, true);
     }
 
-    public void jump(Tile tileawal, Tile tileplant, Tile tileakhir, int x, int y) {
+    public void jump(Tile tileawal, Tile tileakhir, int x, int y) {
         // posisi zombie jadi pindah 2 tile dan plant yg dilompatin mati
         List<Zombie> zombies = new ArrayList<>(tileawal.getZombies());
         for (Zombie zombie : zombies) {
@@ -22,7 +22,7 @@ public class DolphinRiderZombie extends Zombie implements Jump {
                 tileawal.removeZombie(zombie);
             }
         }
-        tileplant.removePlant();
+        tileakhir.removePlant();
         jumped = true;
     }
 
