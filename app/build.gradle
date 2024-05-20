@@ -16,6 +16,6 @@ application {
     mainClass = "App"
 }
 
-tasks.named<JavaExec>("run") {
-    standardInput = System.`in`
+tasks.named("run") {
+    standardInput = System.in
 }

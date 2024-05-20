@@ -1,3 +1,4 @@
+import GUI.*;
 
 import java.util.Scanner;
 
@@ -130,18 +131,44 @@ public class App<T> {
     }
 
     public static void help() {
-
+        System.out.println("\n================================| HELP |================================\n");
+        System.out.println("Start Game  : Start the game");
+        System.out.println("Plant List  : Show all plants");
+        System.out.println("Zombie List : Show all zombies");
+        System.out.println("Help        : Show all commands");
+        System.out.println("Exit        : Exit the game");
     }
 
     public static void plantList() {
-
+        System.out.println("\n=============================| PLANT LIST |=============================\n");
+        System.out.println("1. Cabbagepult");
+        System.out.println("2. Cherry Bomb");
+        System.out.println("3. Lilypad");
+        System.out.println("4. Peashooter");
+        System.out.println("5. Reapeter");
+        System.out.println("6. Snowpea");
+        System.out.println("7. Squash");
+        System.out.println("8. Sunflower");
+        System.out.println("9. Tangle Kelp");
+        System.out.println("10. Wallnut");
     }
 
     public static void zombieList() {
-
+        System.out.println("\n============================| ZOMBIE LIST |=============================\n");
+        System.out.println("1. Buckethead Zombie");
+        System.out.println("2. Conehead Zombie");
+        System.out.println("3. Dolphin Rider Zombie");
+        System.out.println("4. Ducky Tube Zombie");
+        System.out.println("5. Football Zombie");
+        System.out.println("6. Gargantuar");
+        System.out.println("7. JackInTheBox Zombie");
+        System.out.println("8. Newspaper Zombie");
+        System.out.println("9. Normal Zombie");
+        System.out.println("10. Pole Vaulting Zombie");
     }
 
     public static void main(String[] args) {
+        new GameUI();
 
         // Scanner scanner = new Scanner(System.in);
         // inventorydeck = new InventoryDeck<>();
@@ -162,14 +189,17 @@ public class App<T> {
         // }
         // }
         // scanner.close();
-        Game game = new Game();
-        game.gameloop();
+        // Game game = new Game();             INI YA
+        // game.gameloop();                    INI JUGA YA
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
         // System.out.println(command);
         // scanner.close();
-        // startGame();
+        // help();
+        // plantList();
+        // zombieList();
+        
     }
 
 }
