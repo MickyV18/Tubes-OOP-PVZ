@@ -281,7 +281,7 @@ public class Game {
     public void isZeroZombie() {
         if (CountZombie == 0) {
             System.out.println("EZ WINNN ");
-            setGameover();
+            setGameover();  
         }
     }
 
