@@ -1,5 +1,6 @@
 package Tiles;
 
+import Creature.*;
 import Creature.Plant.Plant;
 import Creature.Zombie.*;
 import java.util.ArrayList;
@@ -46,9 +47,19 @@ public abstract class Tile {
         // System.out.println(plant);
     }
 
-    public void removePlant() {
+    public <T extends Tile> void removePlant() {
         // System.out.println(plant);
         this.plant = null;
         // System.out.println(plant);
+    }
+
+    public <T extends Creature> void removeCreature(T entity, int row, int col){
+        if (entity.isDead()){
+            if (entity instanceof Zombie){
+                removeZombie((Zombie) entity);
+            } else if (entity instanceof Plant){
+                removePlant();
+            }
+        }
     }
 }

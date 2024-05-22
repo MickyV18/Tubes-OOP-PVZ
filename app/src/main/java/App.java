@@ -189,9 +189,33 @@ public class App<T> {
         //         System.out.println("Command not found");
         //     }
         // }
+        // new GameUI();
+        // new gameUI();
+        // Scanner scanner = new Scanner(System.in);
+        // inventorydeck = new InventoryDeck<>();
+        // while (!over) {
+        // System.out.println("try Help to print out available commands");
+        // while(true){
+        //     String name = scanner.nextLine();
+        //     if (name.equals("Start Game")) {
+        //         Game game = new Game();
+        //         game.gameloop();
+        //     } else if (name.equals("Help")) {
+        //         help();
+        //     } else if (name.equals("List Plant")){
+        //         plantList();
+        //     } else if (name.equals("List Zombie")){
+        //         zombieList();
+        //     } else if (name.equals("Exit")){
+        //         exit();
+        //     } else{
+        //         System.out.println("Command not found");
+        //     }
+        // }
         // }
         // scanner.close();
-        
+        Game game = new Game();
+        game.gameloop();
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
@@ -200,8 +224,6 @@ public class App<T> {
         // help();
         // plantList();
         // zombieList();
-        Game game = new Game();
-        game.gameloop();
         
     }
 
