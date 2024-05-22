@@ -168,31 +168,30 @@ public class App<T> {
     }
 
     public static void main(String[] args) {
-        new GameUI();
-
-        // Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         // inventorydeck = new InventoryDeck<>();
         // while (!over) {
-        // String name = scanner.next();
-        // if (name.equals("Start Game")) {
-        // startGame();
-        // } else if (name.equals("Help")) {
-        // help();
-        // } else if (name.equals("List Plant")){
-        // plantList();
-        // } else if (name.equals("List Zombie")){
-        // zombieList();
-        // } else if (name.equals("Exit")){
-        // exit();
-        // } else{
-        // System.out.println("Command not found");
-        // }
+        System.out.println("try Help to print out available commands");
+        while(true){
+            String name = scanner.nextLine();
+            if (name.equals("Start Game")) {
+                Game game = new Game();
+                game.gameloop();
+            } else if (name.equals("Help")) {
+                help();
+            } else if (name.equals("List Plant")){
+                plantList();
+            } else if (name.equals("List Zombie")){
+                zombieList();
+            } else if (name.equals("Exit")){
+                exit();
+            } else{
+                System.out.println("Command not found");
+            }
+        }
         // }
         // scanner.close();
-        // Game game = new Game();             INI YA
-        // game.gameloop();                    INI JUGA YA
-        // Game game = new Game();             
-        // game.gameloop();                    
+        
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
