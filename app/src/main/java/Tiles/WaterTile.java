@@ -32,5 +32,13 @@ public class WaterTile extends Tile {
     public void removePlant() {
         super.removePlant();
         this.lilyPlanted = false;
-    }   
+        this.lilyBoost = 0;
+    }
+    
+    public void removeSCPlant(Tile tile) {
+        super.removePlant();
+        Lilypad lilypad = new Lilypad();
+        lilypad.setHealth(lilyBoost);
+        tile.addPlant(lilypad);
+    }
 }
