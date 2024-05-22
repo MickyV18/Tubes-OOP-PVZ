@@ -168,7 +168,7 @@ public class App<T> {
     }
 
     public static void main(String[] args) {
-        // new GameUI();
+        new GameUI();
 
         // Scanner scanner = new Scanner(System.in);
         // inventorydeck = new InventoryDeck<>();
@@ -191,8 +191,8 @@ public class App<T> {
         // scanner.close();
         // Game game = new Game();             INI YA
         // game.gameloop();                    INI JUGA YA
-        Game game = new Game();             
-        game.gameloop();                    
+        // Game game = new Game();             
+        // game.gameloop();                    
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
