@@ -17,9 +17,9 @@ import Tiles.GroundTile;
 import Tiles.SpawnTile;
 import Tiles.Tile;
 import Tiles.WaterTile;
+import Sun.Sun;
 
 public class Game {
-    private int sun;
     private long currentTime;
     private int flag = 0;
     private int setter = -1;
@@ -33,7 +33,6 @@ public class Game {
 
     public Game() {
         currentTime = System.currentTimeMillis();
-        sun = 50;
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 11; j++) {
                 if (j == 0) {
@@ -60,13 +59,14 @@ public class Game {
         int produceSun_time = random.nextInt(5, 10);
 
         while (!isGameover()) {
+            System.out.println("sun = " + Sun.getSun());
             setter++;
             if (setter % 2 == 0) {
 
                 // Produce Sun dari game
                 produceSun_time--;
                 if (produceSun_time == 0 && gametimestamp < 100) {
-                    produceSun();
+                    Sun.produceSun();
                     produceSun_time = random.nextInt(5, 10);
                 }
 
@@ -143,7 +143,7 @@ public class Game {
                         if (inTilePlant.getHealth() != 0) {
                             if (inTilePlant instanceof Sunflower
                                     && ((currentTime - (inTilePlant.getTimeStamp())) / 1000) >= 3) {
-                                produceSun();
+                                Sun.produceSun();
                                 inTilePlant.setTimeStamp(currentTime);
                             } else if (((currentTime - (inTilePlant.getTimeStamp())) / 1000)
                                     % inTilePlant.getAtkSpd() == 0
@@ -273,7 +273,7 @@ public class Game {
             }
 
             if (produceSun_time == 0 && gametimestamp < 100) {
-                produceSun();
+                Sun.produceSun();
                 produceSun_time = random.nextInt(5, 10);
             }
 
@@ -410,20 +410,8 @@ public class Game {
         gameover = true;
     }
 
-    public int getSun() {
-        return sun;
-    }
-
     public void addPlant(Plant plant) {
 
-    }
-
-    public void produceSun() {
-        sun += 25;
-    }
-
-    public void decreaseSun(int amount) {
-        sun -= amount;
     }
 
     public Tile getTiles(Plant plant, int col, int row) {
