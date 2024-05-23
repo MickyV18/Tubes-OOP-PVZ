@@ -45,6 +45,8 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
                 JLabel panel = new JLabel();
                 panel.setBackground(Color.RED);
                 panel.setBounds(159 + (j * 66), 83 + (i * 73), 60, 60);
+                panel.setVerticalAlignment(JLabel.CENTER);
+                panel.setHorizontalAlignment(JLabel.CENTER);
                 grid[i][j] = panel;
                 mapPane.add(grid[i][j]);
             }
@@ -74,7 +76,8 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
 
         // Setting the deck panel
         for (int i = 0; i < 6; ++i) {
-            JButton cardButton = new JButton(InventoryUI.plantImages.get(i));
+            int cardIdx = InventoryUI.deck.get(i);
+            JButton cardButton = new JButton(InventoryUI.plantImages.get(cardIdx));
             cardButton.setBounds(25 + (i * 100), 525, 75, 75);
             cardButton.setBackground(Color.GRAY);
             cardButton.setOpaque(true);
@@ -92,8 +95,7 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
 
     public void runGame() {
         // while (true) {
-            
-        JLabel label =  new JLabel("AHAHHAHHAHA");
+        JLabel label =  new JLabel();
         label.setBounds(0, 0, 60, 60);
         mapPane.add(label);
             
@@ -112,8 +114,11 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
+        for (JButton jButton : cardButtons) {
+            jButton.setBackground(Color.GRAY);
+        }
         int idx = cardButtons.indexOf(e.getSource());
-        currentlyPlacing = idx;
+        currentlyPlacing = InventoryUI.deck.get(idx);
         cardButtons.get(idx).setBackground(Color.darkGray);
     }
 
@@ -134,6 +139,7 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
                         for (JButton jButton : cardButtons) {
                             jButton.setBackground(Color.GRAY);
                         }
+                        hasPlaced = true;
                         break;
                     }
                     if (hasPlaced) break;
