@@ -19,7 +19,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-public class GameUI extends JFrame implements ActionListener, MouseListener{
+public class GameUI extends JFrame implements ActionListener, MouseListener, Runnable{
     public List<JButton> cardButtons = new ArrayList<JButton>();
     // private List<ImageIcon> plantImages = new ArrayList<ImageIcon>();
 
@@ -90,10 +90,11 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
         // Set visible
         this.setVisible(true);
 
-        runGame();
+        run();
     }
 
-    public void runGame() {
+    @Override
+    public void run() {
         // while (true) {
         JLabel label =  new JLabel();
         label.setBounds(0, 0, 60, 60);
@@ -174,5 +175,10 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
     public boolean insideGrid(Point grid, Point p) {
         return (p.getX() > grid.getX()) && (p.getX() <= grid.getX() + 66)
             && (p.getY() > grid.getY()) && (p.getY() <= grid.getY() + 73);
+    }
+
+    public void endGUIGame(){
+        this.setVisible(false);
+        this.dispose();
     }
 }

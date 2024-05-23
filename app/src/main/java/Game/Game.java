@@ -1,7 +1,7 @@
 // urusin masalah design pattern dan exception
 // threading TT
 
-// package Game;
+package Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,11 @@ import Tiles.SpawnTile;
 import Tiles.Tile;
 import Tiles.WaterTile;
 import Sun.Sun;
+import ThreadManager.ThreadManager;
 import Map.*;
+import ThreadManager.*;
 
-public class Game {
+public class Game implements Runnable{
     private static Game game = new Game();
     private static long currentTime;
     private static int flag = 0;
@@ -74,7 +76,8 @@ public class Game {
         // System.err.println(tiles[0][0].getClass().getName());
     }
 
-    public void gameloop() {
+    @Override
+    public void run() {
         Game game = new Game();
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
@@ -302,7 +305,7 @@ public class Game {
             if (gametimestamp >= 160) {
                 isZeroZombie();
             }
-            isZombieInEndTile();
+            if ()
 
             try {
                 Thread.sleep(500);
@@ -310,6 +313,18 @@ public class Game {
                 // TODO: handle exception
             }
         }
+        ThreadManager.getInstance().stopThread();
+    }
+
+    public void endGame(){
+        flag = 0;
+        setter = -1;
+        limitZombie = 10;
+        CountZombie = 0;
+        gametimestamp = -1;
+        gameover = false;
+        firstround = false;
+        
     }
 
     // class InvalidPlantException extends Exception{
@@ -342,7 +357,7 @@ public class Game {
         if (CountZombie < limitZombie && gametimestamp >= 0 && gametimestamp <= 160 && !firstround) {
             if (random.nextDouble(0, 1) < probability) {
                 Zombie zombie = CreatureFactory.createZombie();
-                Map.getTile(i, 9).addZombie(zombie);
+                Map.getTile(i, 2).addZombie(zombie);
                 if (flag != 0) {
                     Zombie zombie2 = CreatureFactory.createZombie();
                     Zombie zombie3 = CreatureFactory.createZombie();
@@ -381,7 +396,7 @@ public class Game {
                     // Check conditions and remove elements from tiles[10][i] based on zombiecheck
                     if ((!zombiecheck.isAquatic() && (i == 2 || i == 3))
                             || (zombiecheck.isAquatic() && (i == 0 || i == 1 || i == 4 || i == 5))) {
-                        Map.getTile(i, 9).removeZombie(zombiecheck);
+                        Map.getTile(i, 2).removeZombie(zombiecheck);
                         Map.getTile(i, 5).removePlant();
                         Map.getTile(i, 4).removePlant();
                     } else {
