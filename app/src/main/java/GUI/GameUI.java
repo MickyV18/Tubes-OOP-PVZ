@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
 
 public class GameUI extends JFrame implements ActionListener, MouseListener{
     public List<JButton> cardButtons = new ArrayList<JButton>();
-    private List<ImageIcon> plantImages = new ArrayList<ImageIcon>();
+    // private List<ImageIcon> plantImages = new ArrayList<ImageIcon>();
 
     private Point[][] gridPos = new Point[6][11];
     private JLabel[][] grid = new JLabel[6][11];
@@ -63,20 +63,18 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
         mapLabel.setBounds(0, 0, 886, 505);
         mapPane.add(mapLabel, JLayeredPane.DEFAULT_LAYER);
 
-
         // Making plantImages
-        ImageIcon plantImage;
-        int[] deckTemp = new int[] {1, 2, 3, 4, 5, 6};
-        for (int i : deckTemp) {
-            plantImage = new ImageIcon("src/Res/Plant" + i + ".png");
-            Image temp = plantImage.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-            plantImage = new ImageIcon(temp);
-            plantImages.add(plantImage);
-        }
+        // ImageIcon plantImage;
+        // for (int i = 0; i < 10; ++i) {
+        //     plantImage = new ImageIcon("src/Res/Plant" + i + ".png");
+        //     Image temp = plantImage.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+        //     plantImage = new ImageIcon(temp);
+        //     plantImages.add(plantImage);
+        // }
 
         // Setting the deck panel
         for (int i = 0; i < 6; ++i) {
-            JButton cardButton = new JButton(plantImages.get(i));
+            JButton cardButton = new JButton(InventoryUI.plantImages.get(i));
             cardButton.setBounds(25 + (i * 100), 525, 75, 75);
             cardButton.setBackground(Color.GRAY);
             cardButton.setOpaque(true);
@@ -132,7 +130,7 @@ public class GameUI extends JFrame implements ActionListener, MouseListener{
                 for (int j = 0; j < 11; ++j) {
                     if (insideGrid(gridPos[i][j], mousePoint))
                     {
-                        grid[i][j].setIcon(plantImages.get(currentlyPlacing));
+                        grid[i][j].setIcon(InventoryUI.plantImages.get(currentlyPlacing));
                         for (JButton jButton : cardButtons) {
                             jButton.setBackground(Color.GRAY);
                         }

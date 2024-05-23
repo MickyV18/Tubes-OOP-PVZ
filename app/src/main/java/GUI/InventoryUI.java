@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import javax.swing.*;
 public class InventoryUI extends JFrame implements ActionListener {
     private JButton nextButton;
     private List<JButton> buttons;
-    private List<ImageIcon> imageIcons;
+    public static List<ImageIcon> plantImages;
     private List<JPanel> cardPanels;
     private int selected = 0;
 
@@ -22,6 +23,16 @@ public class InventoryUI extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+
+        // Setting up plant images
+        plantImages = new ArrayList<ImageIcon>();
+        ImageIcon plantImage;
+        for (int i = 0; i < 9; ++i) {
+            plantImage = new ImageIcon("src/Res/Plant" + i + ".png");
+            Image temp = plantImage.getImage().getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+            plantImage = new ImageIcon(temp);
+            plantImages.add(plantImage);
+        }
         
         // Setting the buttons
         buttons = new ArrayList<JButton>();
