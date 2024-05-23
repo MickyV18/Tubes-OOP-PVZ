@@ -1,5 +1,8 @@
+package Game;
 // urusin masalah design pattern dan exception
 // threading TT
+
+// package Game;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +24,30 @@ import Sun.Sun;
 import Map.*;
 
 public class Game {
-    private long currentTime;
-    private int flag = 0;
-    private int setter = -1;
-    private int limitZombie = 0;
-    private int CountZombie = 0;
-    private int gametimestamp = -1;
-    private List<Plant> deckPlants;
-    private boolean gameover = false;
-    private boolean firstround = false;
+    private static Game game = new Game();
+    private static long currentTime;
+    private static int flag = 0;
+    private static int setter = -1;
+    private static int limitZombie = 10;
+    private static int CountZombie = 0;
+    private static int gametimestamp = -1;
+    private static List<Plant> deckPlants;
+    private static boolean gameover = false;
+    private static boolean firstround = false;
     // private Tile[][] tiles = new Tile[6][11];
 
-    public Game() {
+    public static synchronized Game getGame() {
+        if (game == null) {
+            synchronized (Game.class) {
+                if (game == null) {
+                    game = new Game();
+                }
+            }
+        }
+        return game;
+    }
+
+    private Game() {
         currentTime = System.currentTimeMillis();
         for (int i = 0; i < 6; i++) {
             for (int j = 0; j < 11; j++) {
@@ -61,12 +76,13 @@ public class Game {
     }
 
     public void gameloop() {
+        Game game = new Game();
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
         int produceSun_time = random.nextInt(5, 10);
 
         while (!isGameover()) {
-            System.out.println("sun = " + Sun.getSun());
+            // System.out.println("sun = " + Sun.getSun());
             setter++;
             if (setter % 2 == 0) {
 
@@ -212,7 +228,7 @@ public class Game {
                                         inTilePlant.setTimeStamp(currentTime);
                                     }
                                 }
-                                System.out.println(CountZombie);
+                                // System.out.println(CountZombie);
 
                             }
                         } else {
@@ -235,9 +251,9 @@ public class Game {
                                     newspaperZombie.angry();
                                 }
                             }
-                            if (zombie.getSlowed() == 0) {
+                            if (zombie.getSlowed() == 0 && setter % 2 == 0) {
                                 zombie.unSlowed();
-                            } else if (setter % 2 == 0) {
+                            } else if (setter % 2 == 0 && zombie.getSlowed() > 0) {
                                 zombie.SlowedTimeDecrease();
                             }
                             if (zombie.getHealth() != 0) {
@@ -257,9 +273,9 @@ public class Game {
                                         }
                                     }
                                     if (Map.getTile(i, j-1).getPlant() == null) {
-                                        // System.out.println((currentTime - zombie.getTimeStamp()) / 1000);
+                                        System.out.println(zombie.getSlowed());
                                         if ((currentTime - zombie.getTimeStamp()) / 1000 >= 10
-                                                && (zombie.getSlowed() == 0 || zombie.getSlowed() == -1)) {
+                                                && zombie.getSlowed() == -1) {
                                             // System.out.println(zombie.getHealth());
                                             move(zombie, i, j);
                                             zombie.setTimeStamp(currentTime);
@@ -303,26 +319,28 @@ public class Game {
     // }
     // }
 
-    public void openfile() {
+    public static void openfile() {
         // open file
     }
 
-    public void isZeroZombie() {
+    public static void isZeroZombie() {
         if (CountZombie == 0) {
             System.out.println("EZ WINNN ");
             setGameover();
         }
     }
 
-    public void spawnZombieActivity(int i) {
+    public static void spawnZombieActivity(int i) {
         Random random = new Random();
+        double probability = 0.3;
         if (flag != 0) {
+            probability = 0.5;
             limitZombie = 25;
         } else if (flag == 0 && CountZombie <= 10) {
             limitZombie = 10;
         }
-        if (CountZombie < 1 && gametimestamp >= 0 && gametimestamp <= 160 && !firstround) {
-            double probability = 0.3;
+        // harusnya CountZombie < limitzombie && gametimestamp >= 20
+        if (CountZombie < limitZombie && gametimestamp >= 0 && gametimestamp <= 160 && !firstround) {
             if (random.nextDouble(0, 1) < probability) {
                 Zombie zombie = CreatureFactory.createZombie();
                 Map.getTile(i, 9).addZombie(zombie);
@@ -333,28 +351,28 @@ public class Game {
                     Map.getTile(i, 9).addZombie(zombie3);
                     flag--;
                 }
-                Lilypad lilypad = new Lilypad();
-                Map.getTile(i, 9).addPlant(lilypad);
+                // Lilypad lilypad = new Lilypad();
+                // Map.getTile(i, 9).addPlant(lilypad);
                 // Lilypad lilypad2 = new Lilypad();
                 // tiles[i][1].addPlant(lilypad2);
                 // Wallnut wallnut = new Wallnut();
                 // Map.getTile(i, 9).addPlant(wallnut);
                 // Wallnut wallnut2 = new Wallnut();
-                // tiles[i][7].addPlant(wallnut2);
+                // Map.getTile(i, 7).addPlant(wallnut2);
                 // Wallnut wallnut3 = new Wallnut();
                 // tiles[i][6].addPlant(wallnut3);
                 // TangleKelp cherrybomb = new TangleKelp();
-                // tiles[i][7].addPlant(cherrybomb);
+                // Map.getTile(i, 7).addPlant(cherrybomb);
                 // Sunflower sunflower = new Sunflower();
                 // Map.getTile(i, 9).addPlant(sunflower);
                 // System.out.println(zombie.getName());
-                Squash squash = new Squash();
-                Map.getTile(i, 9).addPlant(squash);
+                // Squash squash = new Squash();
+                // Map.getTile(i, 9).addPlant(squash);
 
-                // Peashooter peashooter = new Peashooter();
-                // tiles[i][7].addPlant(peashooter);
-                // Peashooter peashooter3 = new Peashooter();
-                // tiles[i][4].addPlant(peashooter3);
+                Peashooter peashooter = new Peashooter();
+                Map.getTile(i, 5).addPlant(peashooter);
+                Peashooter peashooter3 = new Peashooter();
+                Map.getTile(i, 4).addPlant(peashooter3);
                 // CherryBomb cher = new CherryBomb();
                 // Map.getTile(i, 9).addPlant(cher);
                 // System.out.println( Map.getTile(i, 9).getPlant());
@@ -365,8 +383,8 @@ public class Game {
                     if ((!zombiecheck.isAquatic() && (i == 2 || i == 3))
                             || (zombiecheck.isAquatic() && (i == 0 || i == 1 || i == 4 || i == 5))) {
                         Map.getTile(i, 9).removeZombie(zombiecheck);
-                        Map.getTile(i, 9).removePlant();
-                        Map.getTile(i, 9).removePlant();
+                        Map.getTile(i, 5).removePlant();
+                        Map.getTile(i, 4).removePlant();
                     } else {
                         CountZombie++;
                     }
@@ -376,7 +394,7 @@ public class Game {
         }
     }
 
-    public void ZombieAttack(Zombie zombie, int x_position, int y_position) {
+    public static void ZombieAttack(Zombie zombie, int x_position, int y_position) {
         if (zombie instanceof DolphinRiderZombie) {
             DolphinRiderZombie dolphinRiderZombie = (DolphinRiderZombie) zombie;
             if (!dolphinRiderZombie.hasJumped()) {
@@ -402,28 +420,28 @@ public class Game {
         zombie.setTimeStamp(currentTime);
     }
 
-    public void move(Zombie zombie, int x_position, int y_position) {
+    public static void move(Zombie zombie, int x_position, int y_position) {
         Map.getTile(x_position, y_position-1).addZombie(zombie);
         Map.getTile(x_position, y_position).removeZombie(zombie);
     }
 
-    public void digplant() {
+    public static void digplant() {
 
     }
 
-    public boolean isGameover() {
+    public static boolean isGameover() {
         return gameover;
     }
 
-    public void setGameover() {
+    public static void setGameover() {
         gameover = true;
     }
 
-    public void addPlant(Plant plant) {
+    public static void addPlant(Plant plant) {
 
     }
 
-    public Tile getTiles(Plant plant, int col, int row) {
+    public static Tile getTiles(Plant plant, int col, int row) {
         if (plant.getRange() == -1) {
             for (int j = row + 1; j < 10; j++) {
                 if (Map.getTile(col, j).hasZombie()) {
@@ -439,7 +457,7 @@ public class Game {
         return null;
     }
 
-    public void isZombieInEndTile() {
+    public static void isZombieInEndTile() {
         for (int x_position = 0; x_position < 6; x_position++) {
             if (Map.getTile(x_position, 0).hasZombie()) {
                 setGameover();

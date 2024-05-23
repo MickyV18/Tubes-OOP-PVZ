@@ -1,14 +1,18 @@
 import GUI.*;
+import Game.Game;
 
 import java.util.Scanner;
 
 import Inventory_Deck.InventoryDeck;
+
+import Game.Game;
 
 public class App<T> {
 
     private static String state;
     private static boolean over = false;
     private static InventoryDeck inventorydeck;
+
     public static String getState() {
         return state;
     }
@@ -54,7 +58,7 @@ public class App<T> {
                     idx1 = scanner.nextInt();
                     if (inventorydeck.isDeckFull()) {
                         System.out.println("Deck full!");
-                    } else if (inventorydeck.isInDeck(idx1-1)) {
+                    } else if (inventorydeck.isInDeck(idx1 - 1)) {
                         System.out.println("Plant already in deck");
                     } else {
                         inventorydeck.addPlantToDeck(idx1 - 1);
@@ -75,14 +79,14 @@ public class App<T> {
                     } else {
                         System.out.println("Input inventory plant index: ");
                         idx1 = scanner.nextInt();
-                        if (!inventorydeck.isInDeck(idx1-1)) {
+                        if (!inventorydeck.isInDeck(idx1 - 1)) {
                             System.out.println("Input deck plant index: ");
                             idx2 = scanner.nextInt();
                             inventorydeck.replaceDeckWInventory(idx1 - 1, idx2 - 1);
                         } else {
                             System.out.println("Plant already in deck");
                         }
-                        
+
                     }
                     break;
                 case 5:
@@ -105,8 +109,7 @@ public class App<T> {
                 case 8:
                     if (inventorydeck.isDeckFull()) {
                         stateDeck = true;
-                        Game game = new Game();
-                        game.gameloop();
+                        Game.getGame().gameloop();
                         break;
                     } else {
                         System.out.println("Deck is not ready");
@@ -117,8 +120,7 @@ public class App<T> {
                     break;
             }
             if (stateDeck) {
-                Game game = new Game();
-                game.gameloop();
+                Game.getGame().gameloop();
             }
         }
         scanner.close();
@@ -173,49 +175,49 @@ public class App<T> {
         // // while (!over) {
         // System.out.println("try Help to print out available commands");
         // while(true){
-        //     String name = scanner.nextLine();
-        //     if (name.equals("Start Game")) {
-        //         Game game = new Game();
-        //         game.gameloop();
-        //     } else if (name.equals("Help")) {
-        //         help();
-        //     } else if (name.equals("List Plant")){
-        //         plantList();
-        //     } else if (name.equals("List Zombie")){
-        //         zombieList();
-        //     } else if (name.equals("Exit")){
-        //         exit();
-        //     } else{
-        //         System.out.println("Command not found");
-        //     }
+        // String name = scanner.nextLine();
+        // if (name.equals("Start Game")) {
+        // Game game = new Game();
+        // game.gameloop();
+        // } else if (name.equals("Help")) {
+        // help();
+        // } else if (name.equals("List Plant")){
+        // plantList();
+        // } else if (name.equals("List Zombie")){
+        // zombieList();
+        // } else if (name.equals("Exit")){
+        // exit();
+        // } else{
+        // System.out.println("Command not found");
         // }
+        // }
+        new GameUI();
         // new GameUI();
-        // new gameUI();
         // Scanner scanner = new Scanner(System.in);
         // inventorydeck = new InventoryDeck<>();
         // while (!over) {
         // System.out.println("try Help to print out available commands");
         // while(true){
-        //     String name = scanner.nextLine();
-        //     if (name.equals("Start Game")) {
-        //         Game game = new Game();
-        //         game.gameloop();
-        //     } else if (name.equals("Help")) {
-        //         help();
-        //     } else if (name.equals("List Plant")){
-        //         plantList();
-        //     } else if (name.equals("List Zombie")){
-        //         zombieList();
-        //     } else if (name.equals("Exit")){
-        //         exit();
-        //     } else{
-        //         System.out.println("Command not found");
-        //     }
+        // String name = scanner.nextLine();
+        // if (name.equals("Start Game")) {
+        // Game.getGame().gameloop();
+
+        // } else if (name.equals("Help")) {
+        // help();
+        // } else if (name.equals("List Plant")){
+        // plantList();
+        // } else if (name.equals("List Zombie")){
+        // zombieList();
+        // } else if (name.equals("Exit")){
+        // exit();
+        // } else{
+        // System.out.println("Command not found");
+        // }
         // }
         // }
         // scanner.close();
-        Game game = new Game();
-        game.gameloop();
+        // Game game = new Game();
+        // game.gameloop();
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
@@ -224,7 +226,6 @@ public class App<T> {
         // help();
         // plantList();
         // zombieList();
-        
     }
 
 }
