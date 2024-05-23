@@ -1,11 +1,9 @@
 import GUI.*;
-import Game.Game;
 
 import java.util.Scanner;
 
 import Inventory_Deck.InventoryDeck;
 
-import Game.Game;
 
 public class App<T> {
 
@@ -191,7 +189,7 @@ public class App<T> {
         // System.out.println("Command not found");
         // }
         // }
-        new GameUI();
+        // new GameUI();
         // new GameUI();
         // Scanner scanner = new Scanner(System.in);
         // inventorydeck = new InventoryDeck<>();
@@ -200,7 +198,7 @@ public class App<T> {
         // while(true){
         // String name = scanner.nextLine();
         // if (name.equals("Start Game")) {
-        // Game.getGame().gameloop();
+        Game.getGame().gameloop();
 
         // } else if (name.equals("Help")) {
         // help();

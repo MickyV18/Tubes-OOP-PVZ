@@ -1,4 +1,3 @@
-package Game;
 // urusin masalah design pattern dan exception
 // threading TT
 
@@ -273,7 +272,6 @@ public class Game {
                                         }
                                     }
                                     if (Map.getTile(i, j-1).getPlant() == null) {
-                                        System.out.println(zombie.getSlowed());
                                         if ((currentTime - zombie.getTimeStamp()) / 1000 >= 10
                                                 && zombie.getSlowed() == -1) {
                                             // System.out.println(zombie.getHealth());
@@ -351,8 +349,8 @@ public class Game {
                     Map.getTile(i, 9).addZombie(zombie3);
                     flag--;
                 }
-                // Lilypad lilypad = new Lilypad();
-                // Map.getTile(i, 9).addPlant(lilypad);
+                Lilypad lilypad = new Lilypad();
+                Map.getTile(i, 7).addPlant(lilypad);
                 // Lilypad lilypad2 = new Lilypad();
                 // tiles[i][1].addPlant(lilypad2);
                 // Wallnut wallnut = new Wallnut();
@@ -361,18 +359,18 @@ public class Game {
                 // Map.getTile(i, 7).addPlant(wallnut2);
                 // Wallnut wallnut3 = new Wallnut();
                 // tiles[i][6].addPlant(wallnut3);
-                // TangleKelp cherrybomb = new TangleKelp();
-                // Map.getTile(i, 7).addPlant(cherrybomb);
+                TangleKelp tangleKelp = new TangleKelp();
+                Map.getTile(i, 7).addPlant(tangleKelp);
                 // Sunflower sunflower = new Sunflower();
                 // Map.getTile(i, 9).addPlant(sunflower);
                 // System.out.println(zombie.getName());
                 // Squash squash = new Squash();
                 // Map.getTile(i, 9).addPlant(squash);
 
-                Peashooter peashooter = new Peashooter();
-                Map.getTile(i, 5).addPlant(peashooter);
-                Peashooter peashooter3 = new Peashooter();
-                Map.getTile(i, 4).addPlant(peashooter3);
+                // Peashooter peashooter = new Peashooter();
+                // Map.getTile(i, 5).addPlant(peashooter);
+                // Peashooter peashooter3 = new Peashooter();
+                // Map.getTile(i, 4).addPlant(peashooter3);
                 // CherryBomb cher = new CherryBomb();
                 // Map.getTile(i, 9).addPlant(cher);
                 // System.out.println( Map.getTile(i, 9).getPlant());
@@ -387,9 +385,10 @@ public class Game {
                         Map.getTile(i, 4).removePlant();
                     } else {
                         CountZombie++;
+                        System.out.println(Map.getTile(i, 7).getPlant());
                     }
+                    
                 }
-                System.out.println(Map.getTile(i, 9).getZombies());
             }
         }
     }
