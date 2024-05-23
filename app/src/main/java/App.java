@@ -1,14 +1,18 @@
 import GUI.*;
+import Game.Game;
 
 import java.util.Scanner;
 
 import Inventory_Deck.InventoryDeck;
+
+import Game.Game;
 
 public class App<T> {
 
     private static String state;
     private static boolean over = false;
     private static InventoryDeck inventorydeck;
+
     public static String getState() {
         return state;
     }
@@ -54,7 +58,7 @@ public class App<T> {
                     idx1 = scanner.nextInt();
                     if (inventorydeck.isDeckFull()) {
                         System.out.println("Deck full!");
-                    } else if (inventorydeck.isInDeck(idx1-1)) {
+                    } else if (inventorydeck.isInDeck(idx1 - 1)) {
                         System.out.println("Plant already in deck");
                     } else {
                         inventorydeck.addPlantToDeck(idx1 - 1);
@@ -75,14 +79,14 @@ public class App<T> {
                     } else {
                         System.out.println("Input inventory plant index: ");
                         idx1 = scanner.nextInt();
-                        if (!inventorydeck.isInDeck(idx1-1)) {
+                        if (!inventorydeck.isInDeck(idx1 - 1)) {
                             System.out.println("Input deck plant index: ");
                             idx2 = scanner.nextInt();
                             inventorydeck.replaceDeckWInventory(idx1 - 1, idx2 - 1);
                         } else {
                             System.out.println("Plant already in deck");
                         }
-                        
+
                     }
                     break;
                 case 5:
@@ -105,8 +109,7 @@ public class App<T> {
                 case 8:
                     if (inventorydeck.isDeckFull()) {
                         stateDeck = true;
-                        Game game = new Game();
-                        game.gameloop();
+                        Game.getGame().gameloop();
                         break;
                     } else {
                         System.out.println("Deck is not ready");
@@ -117,8 +120,7 @@ public class App<T> {
                     break;
             }
             if (stateDeck) {
-                Game game = new Game();
-                game.gameloop();
+                Game.getGame().gameloop();
             }
         }
         scanner.close();
@@ -192,7 +194,8 @@ public class App<T> {
         // }
         // }
         // scanner.close();
-        
+        // Game game = new Game();
+        // game.gameloop();
         // Scanner scanner = new Scanner(System.in);
         // System.out.println("KETIK DISINI: ");
         // String command = scanner.nextLine();
@@ -201,7 +204,6 @@ public class App<T> {
         // help();
         // plantList();
         // zombieList();
-        
     }
 
 }
