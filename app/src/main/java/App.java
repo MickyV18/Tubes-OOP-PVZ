@@ -1,11 +1,9 @@
 import GUI.*;
-import Game.Game;
 
 import java.util.Scanner;
 
 import Inventory_Deck.InventoryDeck;
 
-import Game.Game;
 
 public class App<T> {
 

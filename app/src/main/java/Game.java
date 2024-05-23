@@ -1,4 +1,3 @@
-package Game;
 // urusin masalah design pattern dan exception
 // threading TT
 
