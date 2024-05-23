@@ -1,9 +1,9 @@
 import GUI.*;
 
 import java.util.Scanner;
-
 import Inventory_Deck.InventoryDeck;
 
+import Game.Game;
 
 public class App<T> {
 
@@ -168,49 +168,27 @@ public class App<T> {
     }
 
     public static void main(String[] args) {
+        new MenuUI();
         // Scanner scanner = new Scanner(System.in);
         // // inventorydeck = new InventoryDeck<>();
         // // while (!over) {
         // System.out.println("try Help to print out available commands");
         // while(true){
-        // String name = scanner.nextLine();
-        // if (name.equals("Start Game")) {
-        // Game game = new Game();
-        // game.gameloop();
-        // } else if (name.equals("Help")) {
-        // help();
-        // } else if (name.equals("List Plant")){
-        // plantList();
-        // } else if (name.equals("List Zombie")){
-        // zombieList();
-        // } else if (name.equals("Exit")){
-        // exit();
-        // } else{
-        // System.out.println("Command not found");
-        // }
-        // }
-        // new GameUI();
-        // new GameUI();
-        // Scanner scanner = new Scanner(System.in);
-        // inventorydeck = new InventoryDeck<>();
-        // while (!over) {
-        // System.out.println("try Help to print out available commands");
-        // while(true){
-        // String name = scanner.nextLine();
-        // if (name.equals("Start Game")) {
-        Game.getGame().gameloop();
-
-        // } else if (name.equals("Help")) {
-        // help();
-        // } else if (name.equals("List Plant")){
-        // plantList();
-        // } else if (name.equals("List Zombie")){
-        // zombieList();
-        // } else if (name.equals("Exit")){
-        // exit();
-        // } else{
-        // System.out.println("Command not found");
-        // }
+        //     String name = scanner.nextLine();
+        //     if (name.equals("Start Game")) {
+        //         Game game = new Game();
+        //         game.gameloop();
+        //     } else if (name.equals("Help")) {
+        //         help();
+        //     } else if (name.equals("List Plant")){
+        //         plantList();
+        //     } else if (name.equals("List Zombie")){
+        //         zombieList();
+        //     } else if (name.equals("Exit")){
+        //         exit();
+        //     } else{
+        //         System.out.println("Command not found");
+        //     }
         // }
         // }
         // scanner.close();
