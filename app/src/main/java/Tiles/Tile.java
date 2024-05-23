@@ -5,6 +5,7 @@ import Creature.Plant.Plant;
 import Creature.Zombie.*;
 import java.util.ArrayList;
 import java.util.List;
+import Sun.*;
 
 public abstract class Tile {
     private List<Zombie> zombies;
@@ -43,6 +44,7 @@ public abstract class Tile {
         // System.out.println(plant);
         if (this.plant == null) {
             this.plant = plant;
+            Sun.decreaseSun(plant.getCost());
         }
         // System.out.println(plant);
     }

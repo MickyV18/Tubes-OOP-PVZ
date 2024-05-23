@@ -21,9 +21,7 @@ public abstract class Zombie extends Creature{
         System.out.println("Keslowed");
         normal = false;
         slowed = 3;
-        System.out.println(super.getAtkSpd() + (super.getAtkSpd() / 2));
         setAtkSpd(super.getAtkSpd() + (super.getAtkSpd() / 2));
-        System.out.println(super.getAtkSpd());
     }
 
     public void unSlowed(){
@@ -34,6 +32,7 @@ public abstract class Zombie extends Creature{
             System.out.println(super.getAtkSpd());
             normal = true;
         }
+        slowed = -1;
 
     }
 
