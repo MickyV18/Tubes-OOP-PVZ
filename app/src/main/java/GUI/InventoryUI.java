@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import ThreadManager.*;
+import Game.*;
 
 import javax.swing.*;
 
@@ -34,7 +36,7 @@ public class InventoryUI extends JFrame implements ActionListener {
             plantImage = new ImageIcon(temp);
             plantImages.add(plantImage);
         }
-        
+
         // Setting the buttons
         buttons = new ArrayList<JButton>();
         for (int i = 0; i < 10; ++i) {
@@ -42,8 +44,7 @@ public class InventoryUI extends JFrame implements ActionListener {
             button.setIcon(plantImages.get(i));
             if (i < 5) {
                 button.setBounds(50 + (i * 125), 50, 100, 100);
-            }
-            else {
+            } else {
                 button.setBounds(50 + ((i - 5) * 125), 175, 100, 100);
             }
             button.setFocusable(false);
@@ -91,15 +92,15 @@ public class InventoryUI extends JFrame implements ActionListener {
                 // Adding card label
                 deck.add(idx);
                 button.setBackground(Color.GRAY);
-                selected ++;
-            }
-            else if (button.getBackground() == Color.gray) {
+                selected++;
+            } else if (button.getBackground() == Color.gray) {
                 // Removing card label
                 for (int i = 0; i < deck.size(); i++) {
-                    if (deck.get(i) == idx) deck.remove(i);
+                    if (deck.get(i) == idx)
+                        deck.remove(i);
                 }
                 button.setBackground(Color.white);
-                selected --;
+                selected--;
             }
         }
         System.out.println(deck.toString());
@@ -110,20 +111,26 @@ public class InventoryUI extends JFrame implements ActionListener {
                 Integer card = deck.get(i);
                 ImageIcon image = plantImages.get(card);
                 cardLabels.get(i).setIcon(image);
-            }
-            else {
+            } else {
                 cardLabels.get(i).setBackground(Color.white);
                 cardLabels.get(i).setIcon(null);
             }
         }
 
         // Updating the nextButton
-        if (selected == 6) nextButton.setVisible(true);
-        else nextButton.setVisible(false);
+        if (selected == 6)
+            nextButton.setVisible(true);
+        else
+            nextButton.setVisible(false);
 
         // Changing JFrame
         if (e.getSource() == nextButton) {
-            new GameUI();
+            // new GameUI();
+
+            ThreadManager.getInstance().addThread(new GameUI());
+            ThreadManager.getInstance().addThread(Game.getGame());
+            ThreadManager.getInstance().startThread();
+
             this.setVisible(false);
         }
     }

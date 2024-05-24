@@ -1,6 +1,9 @@
 import GUI.*;
+
 import java.util.Scanner;
 import Inventory_Deck.InventoryDeck;
+import ThreadManager.*;
+import Game.*;
 
 public class App<T> {
 
@@ -104,7 +107,9 @@ public class App<T> {
                 case 8:
                     if (inventorydeck.isDeckFull()) {
                         stateDeck = true;
-                        Game.getGame().gameloop();
+                        ThreadManager.getInstance().addThread(new GameUI());
+                        ThreadManager.getInstance().addThread(Game.getGame());
+                        ThreadManager.getInstance().startThread();
                         break;
                     } else {
                         System.out.println("Deck is not ready");
@@ -115,12 +120,12 @@ public class App<T> {
                     break;
             }
             if (stateDeck) {
-                Game.getGame().gameloop();
+                ThreadManager.getInstance().addThread(new GameUI());
+                ThreadManager.getInstance().addThread(Game.getGame());
+                ThreadManager.getInstance().startThread();
             }
         }
         scanner.close();
-        // Game game = new Game()
-        // gameloop();
     }
 
     public static void exit() {
@@ -165,40 +170,8 @@ public class App<T> {
     }
 
     public static void main(String[] args) {
-        new MenuUI();
-        // Scanner scanner = new Scanner(System.in);
-        // // inventorydeck = new InventoryDeck<>();
-        // // while (!over) {
-        // System.out.println("try Help to print out available commands");
-        // while(true){
-        //     String name = scanner.nextLine();
-        //     if (name.equals("Start Game")) {
-        //         Game game = new Game();
-        //         game.gameloop();
-        //     } else if (name.equals("Help")) {
-        //         help();
-        //     } else if (name.equals("List Plant")){
-        //         plantList();
-        //     } else if (name.equals("List Zombie")){
-        //         zombieList();
-        //     } else if (name.equals("Exit")){
-        //         exit();
-        //     } else{
-        //         System.out.println("Command not found");
-        //     }
-        // }
-        // }
-        // scanner.close();
-        // Game game = new Game();
-        // game.gameloop();
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.println("KETIK DISINI: ");
-        // String command = scanner.nextLine();
-        // System.out.println(command);
-        // scanner.close();
-        // help();
-        // plantList();
-        // zombieList();
+        // new MenuUI();
+        Game.getGame().run();
     }
 
 }
