@@ -152,8 +152,8 @@ public class Game implements Runnable {
             if (gametimestamp > 200) {
                 gametimestamp = 0;
             }
-            if (gametimestamp == 80 && gametimestamp == 160) {
-                flag = 2;
+            if (gametimestamp == 80 || gametimestamp == 155) {
+                flag = 4;
             }
 
             for (int i = 0; i < 6; i++) {
@@ -170,9 +170,12 @@ public class Game implements Runnable {
                                     && ((currentTime - (inTilePlant.getTimeStamp())) / 1000) >= 3) {
                                 Sun.produceSun();
                                 inTilePlant.setTimeStamp(currentTime);
-                            } else if (((currentTime - (inTilePlant.getTimeStamp())) / 1000)
+                            } else if ((((currentTime - (inTilePlant.getTimeStamp())) / 1000)
                                     % inTilePlant.getAtkSpd() == 0
-                                    && (currentTime - inTilePlant.getTimeStamp()) / 1000 != 0) {
+                                    && (currentTime - inTilePlant.getTimeStamp()) / 1000 != 0) || inTilePlant.getFirstAttack()) {
+                                        if (inTilePlant.getFirstAttack()){
+                                            inTilePlant.setFirstAttack();
+                                        }
                                 if (inTilePlant instanceof Squash || inTilePlant instanceof CherryBomb
                                         || inTilePlant instanceof TangleKelp) {
                                     boolean explode = false;
@@ -261,11 +264,7 @@ public class Game implements Runnable {
                                 if ((currentTime - zombie.getTimeStamp()) / 1000 != 0) {
                                     if ((currentTime - zombie.getTimeStamp()) / 100 >= zombie.getAtkSpd() * 10) {
                                         if ((Map.getTile(i, j - 1).getPlant() != null)) {
-                                            System.out.println("Health Plant sebelum kena damage: "
-                                                    + Map.getTile(i, j - 1).getPlant().getHealth());
                                             ZombieAttack(zombie, i, j);
-                                            System.out.println("Health Plant setelah kena damage: "
-                                                    + Map.getTile(i, j - 1).getPlant().getHealth());
                                         } else if ((Map.getTile(i, j).getPlant() != null)) {
                                             ZombieAttack(zombie, i, j + 1);
                                         }
@@ -308,7 +307,6 @@ public class Game implements Runnable {
             }
         }
         ThreadManager.getInstance().stopThread();
-        System.out.println("STUCK");
     }
 
     public void endGame() {
@@ -334,7 +332,7 @@ public class Game implements Runnable {
 
     public static void isZeroZombie() {
         if (CountZombie == 0) {
-            System.out.println("EZ WINNN ");
+            System.out.println("PLANT WIN, TURU DEK");
             setGameover();
         }
     }
@@ -345,14 +343,14 @@ public class Game implements Runnable {
         if (flag != 0) {
             probability = 0.5;
             limitZombie = 25;
-        } else if (flag == 0 && CountZombie <= 10) {
+        } else if (flag == 0) {
             limitZombie = 10;
         }
         // harusnya CountZombie < limitzombie && gametimestamp >= 20
         if (CountZombie < limitZombie && gametimestamp >= 0 && gametimestamp <= 160 && !firstround) {
             if (random.nextDouble(0, 1) < probability) {
                 Zombie zombie = CreatureFactory.createZombie();
-                Map.getTile(i, 2).addZombie(zombie);
+                Map.getTile(i, 9).addZombie(zombie);
                 if (flag != 0) {
                     Zombie zombie2 = CreatureFactory.createZombie();
                     Zombie zombie3 = CreatureFactory.createZombie();
@@ -373,27 +371,30 @@ public class Game implements Runnable {
                 // TangleKelp cherrybomb = new TangleKelp();
                 // Map.getTile(i, 7).addPlant(cherrybomb);
                 // Sunflower sunflower = new Sunflower();
-                // Map.getTile(i, 9).addPlant(sunflower);
-                // Squash squash = new Squash();
-                // Map.getTile(i, 9).addPlant(squash);
+                // Map.getTile(i, 8).addPlant(sunflower);
+                Squash squash = new Squash();
+                Map.getTile(i, 5).addPlant(squash);
 
-                Peashooter peashooter = new Peashooter();
-                Map.getTile(i, 5).addPlant(peashooter);
-                Peashooter peashooter3 = new Peashooter();
-                Map.getTile(i, 4).addPlant(peashooter3);
+                // Peashooter peashooter = new Peashooter();
+                // Map.getTile(i, 5).addPlant(peashooter);
+                // Peashooter peashooter3 = new Peashooter();
+                // Map.getTile(i, 4).addPlant(peashooter3);
                 // CherryBomb cher = new CherryBomb();
                 // Map.getTile(i, 9).addPlant(cher);
 
                 List<Zombie> zombies = new ArrayList<>(Map.getTile(i, 9).getZombies());
                 for (Zombie zombiecheck : zombies) {
-                    // Check conditions and remove elements from tiles[10][i] based on zombiecheck
                     if ((!zombiecheck.isAquatic() && (i == 2 || i == 3))
                             || (zombiecheck.isAquatic() && (i == 0 || i == 1 || i == 4 || i == 5))) {
-                        Map.getTile(i, 2).removeZombie(zombiecheck);
+                        Map.getTile(i, 9).removeZombie(zombiecheck);
                         Map.getTile(i, 5).removePlant();
-                        Map.getTile(i, 4).removePlant();
                     } else {
                         CountZombie++;
+                        if ((Map.getTile(i, 8).getPlant() != null)) {
+                            ZombieAttack(zombie, i, 9);
+                        } else if ((Map.getTile(i, 9).getPlant() != null)) {
+                            ZombieAttack(zombie, i, 10);
+                        }
                     }
                 }
             }
@@ -423,6 +424,7 @@ public class Game implements Runnable {
             zombie.attack(Map.getTile(x_position, y_position - 1).getPlant());
         }
         zombie.setTimeStamp(currentTime);
+
     }
 
     public static void move(Zombie zombie, int x_position, int y_position) {
@@ -465,7 +467,7 @@ public class Game implements Runnable {
         for (int x_position = 0; x_position < 6; x_position++) {
             if (Map.getTile(x_position, 0).hasZombie()) {
                 setGameover();
-                System.out.println("Zombie winnn");
+                System.out.println("ZOMBIE WINN, AKU MAKAN OTAK KAMU KALO PUNYA");
                 break;
             }
         }

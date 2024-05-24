@@ -6,13 +6,23 @@ public abstract class Plant extends Creature {
     private int cost;
     private int range;
     private int cooldown;
+    private boolean firstattack;
 
-    public Plant(String name, int health, int attack_damage, float attack_speed, boolean is_aquatic, int cost, int range, int cooldown){
+    public Plant(String name, int health, int attack_damage, float attack_speed, boolean is_aquatic, int cost, int range, int cooldown, boolean firstattack) {
         super(name, health, attack_damage, attack_speed, is_aquatic);
 
         this.cost = cost;
         this.range = range;
         this.cooldown = cooldown;
+        this.firstattack = firstattack;
+    }
+
+    public boolean getFirstAttack(){
+        return firstattack;
+    }
+
+    public void setFirstAttack(){
+        firstattack = false;
     }
 
     public void attack(Zombie zombie) {
