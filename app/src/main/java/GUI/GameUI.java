@@ -16,7 +16,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class GameUI extends JFrame implements ActionListener, MouseListener{
