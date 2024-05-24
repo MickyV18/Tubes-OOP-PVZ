@@ -39,14 +39,14 @@ public abstract class Tile {
         return plant;
     }
 
-    public void addPlant(Plant plant) {
-        if (Sun.getSun() >= plant.getCost())
-        {
+    public void addPlant(Plant plant) throws InvalidSpawn {
+        if (Sun.getSun() >= plant.getCost()) {
             if (this.plant == null) {
                 this.plant = plant;
                 Sun.decreaseSun(plant.getCost());
             }
         }
+        else throw new InvalidSpawn();
     }
 
     public <T extends Tile> void removePlant() {

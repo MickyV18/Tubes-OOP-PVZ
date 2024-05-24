@@ -23,6 +23,7 @@ import Map.*;
 import Creature.Plant.*;
 import Creature.*;
 import Sun.*;
+import Tiles.InvalidSpawn;
 import Game.Game;
 
 public class GameUI extends JFrame implements ActionListener, MouseListener, Runnable{
@@ -195,7 +196,12 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
                         }
                         else {
                             Plant plant = CreatureFactory.createPlant(currentlyPlacing);
-                            Map.getTile(i, j).addPlant(plant);
+                            try {
+                                Map.getTile(i, j).addPlant(plant);
+                            } catch (InvalidSpawn e1) {
+                                // TODO Auto-generated catch block
+                                e1.printStackTrace();
+                            }
     
                             for (JButton jButton : cardButtons) {
                                 jButton.setBackground(Color.GRAY);

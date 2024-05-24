@@ -13,7 +13,7 @@ public class WaterTile extends Tile {
     }
 
     @Override
-    public void addPlant(Plant plant) {
+    public void addPlant(Plant plant) throws InvalidSpawn{
         if (Sun.getSun() >= plant.getCost())
         {
             if ((super.getPlant() == null && plant instanceof Lilypad) || plant instanceof TangleKelp) {
@@ -42,6 +42,11 @@ public class WaterTile extends Tile {
         super.removePlant();
         Lilypad lilypad = new Lilypad();
         lilypad.setHealth(lilyBoost);
-        tile.addPlant(lilypad);
+        try {
+            tile.addPlant(lilypad);
+        } catch (InvalidSpawn e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
