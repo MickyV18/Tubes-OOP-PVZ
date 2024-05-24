@@ -16,7 +16,6 @@ import javax.swing.*;
 
 public class InventoryUI extends JFrame implements ActionListener {
     private JButton nextButton;
-    private JButton randomButton;
     private List<JButton> buttons;
     public static List<ImageIcon> plantImages;
     public static List<ImageIcon> plantCardImages;
@@ -116,19 +115,6 @@ public class InventoryUI extends JFrame implements ActionListener {
                 }
                 button.setBackground(Color.white);
                 selected--;
-            }
-        }
-        System.out.println(deck.toString());
-        // Updating the card panels
-        for (int i = 0; i < 6; ++i) {
-            if (i < selected) {
-                cardLabels.get(i).setBackground(Color.GRAY);
-                Integer card = deck.get(i);
-                ImageIcon image = plantImages.get(card);
-                cardLabels.get(i).setIcon(image);
-            } else {
-                cardLabels.get(i).setBackground(Color.white);
-                cardLabels.get(i).setIcon(null);
             }
         }
 
