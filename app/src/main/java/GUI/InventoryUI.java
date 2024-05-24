@@ -92,13 +92,6 @@ public class InventoryUI extends JFrame implements ActionListener {
         this.add(nextButton);
         nextButton.setVisible(false);
 
-        // setting the random button
-        randomButton = new JButton();
-        randomButton.setBounds(780, 50, 75, 50);
-        randomButton.addActionListener(this);
-        this.add(randomButton);
-        randomButton.setText("Random");
-
         // Set Visible
         this.setVisible(true);
     }
@@ -154,17 +147,6 @@ public class InventoryUI extends JFrame implements ActionListener {
             ThreadManager.getInstance().startThread();
 
             this.setVisible(false);
-        }
-
-        if (e.getSource() == randomButton) {
-            Random random = new Random();
-            List<Integer> randomList = new ArrayList<Integer>();
-            while (randomList.size() < 6) {
-                int idxrandom = random.nextInt(1, 10);
-                if (!randomList.contains(idxrandom)) {
-                    randomList.add(idxrandom);
-                }
-            }
         }
     }
 }
