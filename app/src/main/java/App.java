@@ -174,7 +174,6 @@ public class App<T> {
     public static void main(String[] args) {
         // new MenuUI();
         new MenuUI();
-        System.out.println("STUCK");
         // Scanner scanner = new Scanner(System.in);
         // // inventorydeck = new InventoryDeck<>();
         // // while (!over) {

@@ -1,9 +1,13 @@
 package ThreadManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import GUI.GameUI;
 import Game.*;
+import Map.Map;
+import Creature.Zombie.Zombie;
+import GUI.*;
 
 public class ThreadManager {
     private static ThreadManager instance;
@@ -19,20 +23,23 @@ public class ThreadManager {
         }
         return instance;
     }
+
     public synchronized void startThread() {
         for (Runnable thread : threadList) {
             new Thread(thread).start();
         }
     }
+
     public synchronized void stopThread() {
         for (Runnable thread : threadList) {
-            if (thread instanceof Game){
-                ((Game)thread).endGame();
-            } else if (thread instanceof GameUI){
-                ((GameUI)thread).endGUIGame();
+            if (thread instanceof Game) {
+                ((Game) thread).endGame();
+            } else if (thread instanceof GameUI) {
+                ((GameUI) thread).endGUIGame();
             }
             // nge stop setiap thread di file
         }
+        new MenuUI();
         threadList.clear();
     }
 
@@ -46,5 +53,16 @@ public class ThreadManager {
 
     public synchronized void addThread(Runnable thread) {
         threadList.add(thread);
+    }
+
+    public synchronized void getZombie() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 11; j++) {
+                List<Zombie> zombies = new ArrayList<>(Map.getTile(i, 9).getZombies());
+                for (Zombie zombie : zombies) {
+                    // GUI
+                }
+            }
+        }
     }
 }

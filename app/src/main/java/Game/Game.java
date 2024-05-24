@@ -24,7 +24,7 @@ import ThreadManager.ThreadManager;
 import Map.*;
 import ThreadManager.*;
 
-public class Game implements Runnable{
+public class Game implements Runnable {
     private static Game game = new Game();
     private static long currentTime;
     private static int flag = 0;
@@ -73,7 +73,6 @@ public class Game implements Runnable{
                 }
             }
         }
-        // System.err.println(tiles[0][0].getClass().getName());
     }
 
     @Override
@@ -84,7 +83,6 @@ public class Game implements Runnable{
         int produceSun_time = random.nextInt(5, 10);
 
         while (!isGameover()) {
-            // System.out.println("sun = " + Sun.getSun());
             setter++;
             if (setter % 2 == 0) {
 
@@ -130,7 +128,8 @@ public class Game implements Runnable{
 
             // if (x_position == 2 || y_position == 3) {
             // WaterTile water = (WaterTile) Map.getTile(x_position, y_position);
-            // if (Map.getTile(i, j).getPlant(2) == null && tanaman.isSunEnough(tanaman, sun)
+            // if (Map.getTile(i, j).getPlant(2) == null && tanaman.isSunEnough(tanaman,
+            // sun)
             // && tanaman.isCooldown(currentTime, tanaman.getTimeStamp())) {
             // if (tanaman instanceof Lilypad || water.isLilyPlanted()) {
             // water.addPlant(tanaman);
@@ -138,7 +137,8 @@ public class Game implements Runnable{
             // }
             // } else {
             // GroundTile ground = (GroundTile) Map.getTile(x_position, y_position);
-            // if (Map.getTile(i, j).getPlant(w) == null && tanaman.isSunEnough(tanaman, sun)
+            // if (Map.getTile(i, j).getPlant(w) == null && tanaman.isSunEnough(tanaman,
+            // sun)
             // && tanaman.isCooldown(currentTime, tanaman.getTimeStamp())) {
             // if (tanaman instanceof Lilypad) {
             // ground.addPlant(tanaman);
@@ -230,7 +230,6 @@ public class Game implements Runnable{
                                         inTilePlant.setTimeStamp(currentTime);
                                     }
                                 }
-                                // System.out.println(CountZombie);
 
                             }
                         } else {
@@ -260,29 +259,23 @@ public class Game implements Runnable{
                             }
                             if (zombie.getHealth() != 0) {
                                 if ((currentTime - zombie.getTimeStamp()) / 1000 != 0) {
-                                    // System.out.println(
-                                    // "Waktu Zombie Nyerang: " + (currentTime - zombie.getTimeStamp()) / 100);
-                                    // System.out.println(setter);
                                     if ((currentTime - zombie.getTimeStamp()) / 100 >= zombie.getAtkSpd() * 10) {
-                                        if ((Map.getTile(i, j-1).getPlant() != null)) {
+                                        if ((Map.getTile(i, j - 1).getPlant() != null)) {
                                             System.out.println("Health Plant sebelum kena damage: "
-                                                    + Map.getTile(i, j-1).getPlant().getHealth());
+                                                    + Map.getTile(i, j - 1).getPlant().getHealth());
                                             ZombieAttack(zombie, i, j);
                                             System.out.println("Health Plant setelah kena damage: "
-                                                    + Map.getTile(i, j-1).getPlant().getHealth());
+                                                    + Map.getTile(i, j - 1).getPlant().getHealth());
                                         } else if ((Map.getTile(i, j).getPlant() != null)) {
                                             ZombieAttack(zombie, i, j + 1);
                                         }
                                     }
-                                    if (Map.getTile(i, j-1).getPlant() == null) {
-                                        System.out.println(zombie.getSlowed());
+                                    if (Map.getTile(i, j - 1).getPlant() == null) {
                                         if ((currentTime - zombie.getTimeStamp()) / 1000 >= 10
                                                 && zombie.getSlowed() == -1) {
-                                            // System.out.println(zombie.getHealth());
                                             move(zombie, i, j);
                                             zombie.setTimeStamp(currentTime);
                                         } else if ((currentTime - zombie.getTimeStamp()) / 1000 >= 15) {
-                                            // System.out.println(zombie.getHealth());
                                             move(zombie, i, j);
                                             zombie.setTimeStamp(currentTime);
                                         }
@@ -305,7 +298,8 @@ public class Game implements Runnable{
             if (gametimestamp >= 160) {
                 isZeroZombie();
             }
-            if ()
+
+            isZombieInEndTile();
 
             try {
                 Thread.sleep(500);
@@ -314,9 +308,10 @@ public class Game implements Runnable{
             }
         }
         ThreadManager.getInstance().stopThread();
+        System.out.println("STUCK");
     }
 
-    public void endGame(){
+    public void endGame() {
         flag = 0;
         setter = -1;
         limitZombie = 10;
@@ -324,7 +319,7 @@ public class Game implements Runnable{
         gametimestamp = -1;
         gameover = false;
         firstround = false;
-        
+
     }
 
     // class InvalidPlantException extends Exception{
@@ -379,7 +374,6 @@ public class Game implements Runnable{
                 // Map.getTile(i, 7).addPlant(cherrybomb);
                 // Sunflower sunflower = new Sunflower();
                 // Map.getTile(i, 9).addPlant(sunflower);
-                // System.out.println(zombie.getName());
                 // Squash squash = new Squash();
                 // Map.getTile(i, 9).addPlant(squash);
 
@@ -389,7 +383,6 @@ public class Game implements Runnable{
                 Map.getTile(i, 4).addPlant(peashooter3);
                 // CherryBomb cher = new CherryBomb();
                 // Map.getTile(i, 9).addPlant(cher);
-                // System.out.println( Map.getTile(i, 9).getPlant());
 
                 List<Zombie> zombies = new ArrayList<>(Map.getTile(i, 9).getZombies());
                 for (Zombie zombiecheck : zombies) {
@@ -403,7 +396,6 @@ public class Game implements Runnable{
                         CountZombie++;
                     }
                 }
-                System.out.println(Map.getTile(i, 9).getZombies());
             }
         }
     }
@@ -412,30 +404,29 @@ public class Game implements Runnable{
         if (zombie instanceof DolphinRiderZombie) {
             DolphinRiderZombie dolphinRiderZombie = (DolphinRiderZombie) zombie;
             if (!dolphinRiderZombie.hasJumped()) {
-                System.out.println("MASUK ATTACK 2");
-                dolphinRiderZombie.jump(Map.getTile(x_position, y_position), Map.getTile(x_position, y_position-2), x_position,
+                dolphinRiderZombie.jump(Map.getTile(x_position, y_position), Map.getTile(x_position, y_position - 2),
+                        x_position,
                         y_position);
             } else {
-                zombie.attack(Map.getTile(x_position, y_position-1).getPlant());
+                zombie.attack(Map.getTile(x_position, y_position - 1).getPlant());
             }
         } else if (zombie instanceof PoleVaultingZombie) {
             PoleVaultingZombie poleVaultingZombie = (PoleVaultingZombie) zombie;
             if (!poleVaultingZombie.hasJumped()) {
-                poleVaultingZombie.jump(Map.getTile(x_position, y_position), Map.getTile(x_position, y_position-2), x_position,
+                poleVaultingZombie.jump(Map.getTile(x_position, y_position), Map.getTile(x_position, y_position - 2),
+                        x_position,
                         y_position);
             } else {
-                zombie.attack(Map.getTile(x_position, y_position-1).getPlant());
+                zombie.attack(Map.getTile(x_position, y_position - 1).getPlant());
             }
         } else {
-            System.out.println("Health Zombie yang nyerang: " + zombie.getHealth());
-            zombie.attack(Map.getTile(x_position, y_position-1).getPlant());
-            System.out.println("Attack Speed: " + zombie.getAtkSpd());
+            zombie.attack(Map.getTile(x_position, y_position - 1).getPlant());
         }
         zombie.setTimeStamp(currentTime);
     }
 
     public static void move(Zombie zombie, int x_position, int y_position) {
-        Map.getTile(x_position, y_position-1).addZombie(zombie);
+        Map.getTile(x_position, y_position - 1).addZombie(zombie);
         Map.getTile(x_position, y_position).removeZombie(zombie);
     }
 
@@ -463,9 +454,8 @@ public class Game implements Runnable{
                 }
             }
         } else {
-            System.out.println("Zombie: " + Map.getTile(col, row+1).hasZombie());
-            if (Map.getTile(col, row+1).hasZombie()) {
-                return Map.getTile(col, row+1);
+            if (Map.getTile(col, row + 1).hasZombie()) {
+                return Map.getTile(col, row + 1);
             }
         }
         return null;
@@ -480,4 +470,5 @@ public class Game implements Runnable{
             }
         }
     }
+
 }

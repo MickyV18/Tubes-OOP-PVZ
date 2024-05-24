@@ -179,6 +179,6 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
 
     public void endGUIGame(){
         this.setVisible(false);
-        this.dispose();
+        // this.dispose();
     }
 }
