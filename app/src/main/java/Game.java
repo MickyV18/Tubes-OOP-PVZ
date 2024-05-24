@@ -425,7 +425,7 @@ public class Game {
     }
 
     public static void digplant() {
-
+        
     }
 
     public static boolean isGameover() {
