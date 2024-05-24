@@ -422,4 +422,6 @@ public class Game implements Runnable {
         }
     }
 
+    public static int getTimeStamp() {return gametimestamp;}
+
 }

@@ -131,5 +131,18 @@ public class InventoryUI extends JFrame implements ActionListener {
 
             this.setVisible(false);
         }
+
+        // Updating the card panels
+        for (int i = 0; i < 6; ++i) {
+            if (i < selected) {
+                cardLabels.get(i).setBackground(Color.GRAY);
+                Integer card = deck.get(i);
+                ImageIcon image = plantImages.get(card);
+                cardLabels.get(i).setIcon(image);
+            } else {
+                cardLabels.get(i).setBackground(Color.white);
+                cardLabels.get(i).setIcon(null);
+            }
+        }
     }
 }

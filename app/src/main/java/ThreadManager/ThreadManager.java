@@ -38,7 +38,7 @@ public class ThreadManager {
                 ((GameUI) thread).endGUIGame();
             }
         }
-        new MenuUI();
+        GUI.loadState("menu");
         threadList.clear();
     }
 

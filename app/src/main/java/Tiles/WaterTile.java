@@ -1,6 +1,7 @@
 package Tiles;
 
 import Creature.Plant.*;
+import Sun.Sun;
 
 public class WaterTile extends Tile {
     private boolean lilyPlanted;
@@ -11,15 +12,19 @@ public class WaterTile extends Tile {
         this.lilyPlanted = false;
     }
 
+    @Override
     public void addPlant(Plant plant) {
-        if ((super.getPlant() == null && plant instanceof Lilypad) || plant instanceof TangleKelp) {
-            lilyPlanted = true;
-            this.lilyBoost = plant.getHealth();
-            super.addPlant(plant);
-        } else if (lilyPlanted) {
-            super.removePlant();
-            super.addPlant(plant);
-            super.getPlant().setHealth(plant.getHealth() + this.lilyBoost);
+        if (Sun.getSun() >= plant.getCost())
+        {
+            if ((super.getPlant() == null && plant instanceof Lilypad) || plant instanceof TangleKelp) {
+                lilyPlanted = true;
+                this.lilyBoost = plant.getHealth();
+                super.addPlant(plant);
+            } else if (lilyPlanted) {
+                super.removePlant();
+                super.addPlant(plant);
+                super.getPlant().setHealth(plant.getHealth() + this.lilyBoost);
+            }
         }
     }
 

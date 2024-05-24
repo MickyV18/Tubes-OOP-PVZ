@@ -1,6 +1,7 @@
 package GUI;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -18,6 +19,12 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingUtilities;
 
+import Map.*;
+import Creature.Plant.*;
+import Creature.*;
+import Sun.*;
+import Game.Game;
+
 public class GameUI extends JFrame implements ActionListener, MouseListener, Runnable{
     public List<JButton> cardButtons = new ArrayList<JButton>();
     // private List<ImageIcon> plantImages = new ArrayList<ImageIcon>();
@@ -26,6 +33,9 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
     private JLabel[][] grid = new JLabel[6][11];
     private Point mousePoint;
     private int currentlyPlacing = -1;
+    private JLabel sunLabel;
+    private JLabel timeLabel;
+    private JButton digButton;
 
     private JLayeredPane mapPane = new JLayeredPane();
     
@@ -86,46 +96,87 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
             this.add(cardButtons.get(i));
         }
 
+        // Setting the sun JLabel
+        sunLabel = new JLabel();
+        sunLabel.setBounds(625, 570, 180, 60);
+        // sunLabel.setBackground(Color.RED);
+        // sunLabel.setOpaque(true);
+        sunLabel.setFont(new Font("Arial", Font.BOLD, 43));
+        this.add(sunLabel);
+
+        // Setting the time JLabel
+        timeLabel = new JLabel();
+        timeLabel.setBounds(625, 510, 180, 60);
+        // timeLabel.setBackground(Color.RED);
+        // timeLabel.setOpaque(true);
+        timeLabel.setFont(new Font("Arial", Font.BOLD, 43));
+        this.add(timeLabel);
+
+        // Setting the dig button
+        digButton = new JButton("DIG!");
+        digButton.addActionListener(this);
+        digButton.setBounds(795, 535, 50, 50);
+        this.add(digButton);
+
         // Set visible
         this.setVisible(true);
-
-        run();
     }
 
     @Override
     public void run() {
-        // while (true) {
         JLabel label =  new JLabel();
         label.setBounds(0, 0, 60, 60);
         mapPane.add(label);
+
+        while (true) {
+            for (int i = 0; i < 6; ++i) {
+                for (int j = 0; j < 11; ++j) {
+                    if (Map.getTile(i, j).getPlant() != null) {
+                        grid[i][j].setIcon(InventoryUI.plantImages.get(Map.getTile(i, j).getPlant().idx()));
+                    }
+                    else if (!Map.getTile(i, j).getZombies().isEmpty()){
+                        ImageIcon zombieImg = new ImageIcon("src/Res/zombie/" + Map.getTile(i, j).getZombies().get(0).getName() + ".png");
+                        Image temp = zombieImg.getImage().getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH);
+                        zombieImg = new ImageIcon(temp);
+                        grid[i][j].setIcon(zombieImg);
+                    }
+                    else grid[i][j].setIcon(null);
+                    grid[i][j].revalidate();
+                }
+            }
             
+            sunLabel.setText("Sun : " + Integer.toString(Sun.getSun()));
+            sunLabel.revalidate();
+
+            timeLabel.setText("Time : " + Integer.toString(Game.getTimeStamp()));
+            timeLabel.revalidate();
             
-            
-        //     try {
-        //         Thread.sleep(10);
-        //     } catch (InterruptedException e) {
-        //         // TODO Auto-generated catch block
-        //         e.printStackTrace();
-        //     }
-        // }
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     // Card button events
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        for (JButton jButton : cardButtons) {
-            jButton.setBackground(Color.GRAY);
+        if (e.getSource() == digButton) {currentlyPlacing = -2;}
+        else {
+            for (JButton jButton : cardButtons) {
+                jButton.setBackground(Color.GRAY);
+            }
+            int idx = cardButtons.indexOf(e.getSource());
+            currentlyPlacing = InventoryUI.deck.get(idx);
+            cardButtons.get(idx).setBackground(Color.darkGray); 
         }
-        int idx = cardButtons.indexOf(e.getSource());
-        currentlyPlacing = InventoryUI.deck.get(idx);
-        cardButtons.get(idx).setBackground(Color.darkGray);
     }
 
     // Mouse events
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println("clicked");
         mousePoint = MouseInfo.getPointerInfo().getLocation();
         SwingUtilities.convertPointFromScreen(mousePoint, e.getComponent());
         System.out.println(mousePoint);
@@ -135,9 +186,20 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
                 for (int j = 0; j < 11; ++j) {
                     if (insideGrid(gridPos[i][j], mousePoint))
                     {
-                        grid[i][j].setIcon(InventoryUI.plantImages.get(currentlyPlacing));
-                        for (JButton jButton : cardButtons) {
-                            jButton.setBackground(Color.GRAY);
+                        // grid[i][j].setIcon(InventoryUI.plantImages.get(currentlyPlacing));
+
+                        // Setting the new plant
+                        if (currentlyPlacing == -2)
+                        {
+                            Map.getTile(i, j).removePlant();
+                        }
+                        else {
+                            Plant plant = CreatureFactory.createPlant(currentlyPlacing);
+                            Map.getTile(i, j).addPlant(plant);
+    
+                            for (JButton jButton : cardButtons) {
+                                jButton.setBackground(Color.GRAY);
+                            }
                         }
                         hasPlaced = true;
                         break;
@@ -146,7 +208,6 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
                 }
             }
             if (hasPlaced) currentlyPlacing = -1;
-
         }
     }
 

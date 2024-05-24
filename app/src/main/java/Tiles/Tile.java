@@ -40,9 +40,12 @@ public abstract class Tile {
     }
 
     public void addPlant(Plant plant) {
-        if (this.plant == null) {
-            this.plant = plant;
-            Sun.decreaseSun(plant.getCost());
+        if (Sun.getSun() >= plant.getCost())
+        {
+            if (this.plant == null) {
+                this.plant = plant;
+                Sun.decreaseSun(plant.getCost());
+            }
         }
     }
 

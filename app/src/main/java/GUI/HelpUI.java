@@ -19,10 +19,16 @@ public class HelpUI extends JFrame implements ActionListener {
 
         // Setting up the back button
         backButton = new JButton("<-");
-        backButton.setBounds(25, 25, 75, 75);
+        backButton.setBounds(775, 25, 75, 75);
         backButton.addActionListener(this);
         backButton.setFocusable(false);
         this.add(backButton);
+
+        // Setting up background
+        ImageIcon backgroundImg = new ImageIcon("src/Res/Help.png");
+        JLabel background = new JLabel(backgroundImg);
+        background.setBounds(0, 0, 880, 660);
+        this.add(background);
     }
 
     @Override

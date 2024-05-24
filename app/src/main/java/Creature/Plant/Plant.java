@@ -7,6 +7,7 @@ public abstract class Plant extends Creature {
     private int range;
     private int cooldown;
     private boolean firstattack;
+    private int idx;
 
     public Plant(String name, int health, int attack_damage, float attack_speed, boolean is_aquatic, int cost, int range, int cooldown, boolean firstattack) {
         super(name, health, attack_damage, attack_speed, is_aquatic);
@@ -67,4 +68,6 @@ public abstract class Plant extends Creature {
             return false;
         }
     }
+
+    public abstract int idx();
 }
