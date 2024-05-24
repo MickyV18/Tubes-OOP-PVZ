@@ -73,6 +73,7 @@ public class PlantListUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
             GUI.loadState("menu");
+            this.setVisible(false);
             // new MenuUI();
             // this.setVisible(false);
         }
