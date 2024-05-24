@@ -166,7 +166,7 @@ public class App<T> {
     }
 
     public static void main(String[] args) {
-        new MenuUI();
+        new GUI();  
         // Game.getGame().run();
     }
 
