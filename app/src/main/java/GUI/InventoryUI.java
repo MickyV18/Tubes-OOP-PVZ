@@ -6,15 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import ThreadManager.*;
 import Game.*;
+import java.util.random.*;
 
 import javax.swing.*;
 
 public class InventoryUI extends JFrame implements ActionListener {
     private JButton nextButton;
+    private JButton randomButton;
     private List<JButton> buttons;
     public static List<ImageIcon> plantImages;
+    public static List<ImageIcon> plantCardImages;
     public static List<Integer> deck;
     private List<JLabel> cardLabels;
     private int selected = 0;
@@ -35,6 +40,16 @@ public class InventoryUI extends JFrame implements ActionListener {
             Image temp = plantImage.getImage().getScaledInstance(60, 60, java.awt.Image.SCALE_SMOOTH);
             plantImage = new ImageIcon(temp);
             plantImages.add(plantImage);
+        }
+
+        // Setting up plant card images
+        plantCardImages = new ArrayList<ImageIcon>();
+        ImageIcon plantImage2;
+        for (int i = 0; i < 10; ++i) {
+            plantImage2 = new ImageIcon("src/Res/plant" + i + "card.png");
+            Image temp = plantImage2.getImage().getScaledInstance(60, 80, java.awt.Image.SCALE_SMOOTH);
+            plantImage2 = new ImageIcon(temp);
+            plantCardImages.add(plantImage2);
         }
 
         // Setting the buttons
@@ -76,6 +91,13 @@ public class InventoryUI extends JFrame implements ActionListener {
         nextButton.addActionListener(this);
         this.add(nextButton);
         nextButton.setVisible(false);
+
+        // setting the random button
+        randomButton = new JButton();
+        randomButton.setBounds(780, 50, 75, 50);
+        randomButton.addActionListener(this);
+        this.add(randomButton);
+        randomButton.setText("Random");
 
         // Set Visible
         this.setVisible(true);
@@ -132,6 +154,17 @@ public class InventoryUI extends JFrame implements ActionListener {
             ThreadManager.getInstance().startThread();
 
             this.setVisible(false);
+        }
+
+        if (e.getSource() == randomButton) {
+            Random random = new Random();
+            List<Integer> randomList = new ArrayList<Integer>();
+            while (randomList.size() < 6) {
+                int idxrandom = random.nextInt(1, 10);
+                if (!randomList.contains(idxrandom)) {
+                    randomList.add(idxrandom);
+                }
+            }
         }
     }
 }

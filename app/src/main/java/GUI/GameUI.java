@@ -76,8 +76,8 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
         // Setting the deck panel
         for (int i = 0; i < 6; ++i) {
             int cardIdx = InventoryUI.deck.get(i);
-            JButton cardButton = new JButton(InventoryUI.plantImages.get(cardIdx));
-            cardButton.setBounds(25 + (i * 100), 525, 75, 75);
+            JButton cardButton = new JButton(InventoryUI.plantCardImages.get(cardIdx));
+            cardButton.setBounds(25 + (i * 100), 525, 75, 90);
             cardButton.setBackground(Color.GRAY);
             cardButton.setOpaque(true);
             cardButton.setFocusable(false);
