@@ -13,7 +13,6 @@ public class DolphinRiderZombie extends Zombie implements Jump {
     }
 
     public void jump(Tile tileawal, Tile tileakhir, int x, int y) {
-        // posisi zombie jadi pindah 2 tile dan plant yg dilompatin mati
         List<Zombie> zombies = new ArrayList<>(tileawal.getZombies());
         for (Zombie zombie : zombies) {
             if (zombie instanceof DolphinRiderZombie) {
