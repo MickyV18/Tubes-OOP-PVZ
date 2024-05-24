@@ -18,15 +18,15 @@ public abstract class Zombie extends Creature{
     }
 
     public void Slowed(){
-        System.out.println("Keslowed");
         normal = false;
+        if (slowed == -1){
+            setAtkSpd(super.getAtkSpd() + (super.getAtkSpd() / 2));
+        }
         slowed = 3;
-        setAtkSpd(super.getAtkSpd() + (super.getAtkSpd() / 2));
     }
 
     public void unSlowed(){
         if (!normal){
-            System.out.println("UNSLOWED");
             System.out.println(super.getAtkSpd());
             setAtkSpd((2 * super.getAtkSpd()) / 3);
             System.out.println(super.getAtkSpd());

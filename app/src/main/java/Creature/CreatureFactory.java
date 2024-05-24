@@ -35,7 +35,7 @@ public class CreatureFactory {
     public static Zombie createZombie() {
         Random random = new Random();
         int zombieInt = random.nextInt(1, 10);
-        if (zombieInt == 6) {
+        if (zombieInt == 1) {
             DolphinRiderZombie zombie = new DolphinRiderZombie();
             return zombie;
         } else if (zombieInt == 2) {
