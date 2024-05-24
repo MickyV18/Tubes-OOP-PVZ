@@ -37,7 +37,6 @@ public class ThreadManager {
             } else if (thread instanceof GameUI) {
                 ((GameUI) thread).endGUIGame();
             }
-            // nge stop setiap thread di file
         }
         new MenuUI();
         threadList.clear();

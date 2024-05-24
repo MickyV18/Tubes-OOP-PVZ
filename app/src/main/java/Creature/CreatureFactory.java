@@ -28,15 +28,13 @@ public class CreatureFactory {
         } else if (plantType.equalsIgnoreCase("wallnut")) {
             return new Wallnut();
         } else {
-            // Return a default value or throw an exception if plantType is invalid
             throw new IllegalArgumentException("Unknown plant type: " + plantType);
         }
     }
 
     public static Zombie createZombie() {
         Random random = new Random();
-        int zombieInt = 5;   
-        // int zombieInt = random.nextInt(1, 10);
+        int zombieInt = random.nextInt(1, 10);
         if (zombieInt == 6) {
             DolphinRiderZombie zombie = new DolphinRiderZombie();
             return zombie;

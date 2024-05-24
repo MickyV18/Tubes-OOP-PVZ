@@ -36,23 +36,18 @@ public abstract class Tile {
     }
 
     public Plant getPlant() {
-        // System.out.println(plant);
         return plant;
     }
 
     public void addPlant(Plant plant) {
-        // System.out.println(plant);
         if (this.plant == null) {
             this.plant = plant;
             Sun.decreaseSun(plant.getCost());
         }
-        // System.out.println(plant);
     }
 
     public <T extends Tile> void removePlant() {
-        // System.out.println(plant);
         this.plant = null;
-        // System.out.println(plant);
     }
 
     public <T extends Creature> void removeCreature(T entity, int row, int col){

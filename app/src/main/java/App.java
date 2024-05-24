@@ -20,15 +20,11 @@ public class App<T> {
     }
 
     public static void startGame() {
-        // dia ngebuat deck baru trus milih 6 plant, baru mulai gamenya
         Scanner scanner = new Scanner(System.in);
-        // String name = scanner.next();
 
-        // Game game = new Game();
         inventorydeck = new InventoryDeck();
         boolean stateDeck = false;
         int command;
-        // command = scanner.nextInt();
 
         while (!stateDeck) {
             inventorydeck.printInventory();
