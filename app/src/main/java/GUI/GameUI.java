@@ -101,7 +101,7 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
         sunLabel.setBounds(625, 570, 180, 60);
         // sunLabel.setBackground(Color.RED);
         // sunLabel.setOpaque(true);
-        sunLabel.setFont(new Font("Arial", Font.BOLD, 43));
+        sunLabel.setFont(new Font("Arial", Font.BOLD, 23));
         this.add(sunLabel);
 
         // Setting the time JLabel
@@ -109,7 +109,7 @@ public class GameUI extends JFrame implements ActionListener, MouseListener, Run
         timeLabel.setBounds(625, 510, 180, 60);
         // timeLabel.setBackground(Color.RED);
         // timeLabel.setOpaque(true);
-        timeLabel.setFont(new Font("Arial", Font.BOLD, 43));
+        timeLabel.setFont(new Font("Arial", Font.BOLD, 23));
         this.add(timeLabel);
 
         // Setting the dig button
