@@ -2,6 +2,8 @@ package Creature.Plant;
 
 public class Wallnut extends Plant {
     private int idx = 9;
+    public static int cooldownplant = 20;
+
     public Wallnut(){
         super("Wallnut", 1000, 0, 0, false, 50, 0, 20, false);
         this.idx = 9;

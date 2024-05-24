@@ -3,6 +3,8 @@ package Creature.Plant;
 public class Lilypad extends Plant {
     private Plant plant;
     private int idx = 2;
+    public static int cooldownplant = 10;
+
 
     public Lilypad(){
         super("Lilypad", 100, 0, 0, true, 25, 0, 10, false);

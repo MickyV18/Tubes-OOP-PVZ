@@ -3,6 +3,8 @@ import Creature.Zombie.*;
 
 public class SnowPea extends Plant{
     private int idx = 5;
+    public static int cooldownplant = 10;
+
     public SnowPea(){
         super("SnowPea", 100, 25, 4, false, 175, -1, 10, true);
         this.idx = 5;
