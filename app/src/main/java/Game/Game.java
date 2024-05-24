@@ -341,7 +341,6 @@ public class Game implements Runnable {
         Random random = new Random();
         double probability = 0.3;
         if (flag != 0) {
-            probability = 0.5;
             limitZombie = 25;
         } else if (flag == 0) {
             limitZombie = 10;

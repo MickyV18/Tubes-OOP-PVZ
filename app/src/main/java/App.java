@@ -126,8 +126,6 @@ public class App<T> {
             }
         }
         scanner.close();
-        // Game game = new Game()
-        // gameloop();
     }
 
     public static void exit() {
@@ -173,40 +171,7 @@ public class App<T> {
 
     public static void main(String[] args) {
         // new MenuUI();
-        new MenuUI();
-        // Scanner scanner = new Scanner(System.in);
-        // // inventorydeck = new InventoryDeck<>();
-        // // while (!over) {
-        // System.out.println("try Help to print out available commands");
-        // while(true){
-        // ng name = scanner.nextLine();
-        // name.equals("Start Game")) {
-        // e = new Game();
-        // eloop();
-        // se if (name.equals("Help")) {
-        //
-        // se if (name.equals("List Plant")){
-        // t();
-        // se if (name.equals("List Zombie")){
-        // st();
-        // se if (name.equals("Exit")){
-        //
-        // se{
-        // ut.println("Command not found");
-        //
-        // }
-        // }
-        // scanner.close();
-        // Game game = new Game();
-        // game.gameloop();
-        // Scanner scanner = new Scanner(System.in);
-        // System.out.println("KETIK DISINI: ");
-        // String command = scanner.nextLine();
-        // System.out.println(command);
-        // scanner.close();
-        // help();
-        // plantList();
-        // zombieList();
+        Game.getGame().run();
     }
 
 }
