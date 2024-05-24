@@ -28,7 +28,6 @@ public class CreatureFactory {
         } else if (plantType.equalsIgnoreCase("wallnut")) {
             return new Wallnut();
         } else {
-            // Return a default value or throw an exception if plantType is invalid
             throw new IllegalArgumentException("Unknown plant type: " + plantType);
         }
     }

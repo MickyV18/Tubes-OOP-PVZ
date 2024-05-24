@@ -3,13 +3,11 @@ package Tiles;
 import Creature.Plant.*;
 
 public class WaterTile extends Tile {
-    // private Plant plant;
     private boolean lilyPlanted;
     private int lilyBoost;
 
     public WaterTile() {
         super();
-        // super.getPlant() = null;
         this.lilyPlanted = false;
     }
 
