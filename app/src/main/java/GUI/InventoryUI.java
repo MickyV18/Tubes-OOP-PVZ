@@ -16,7 +16,6 @@ import javax.swing.*;
 
 public class InventoryUI extends JFrame implements ActionListener {
     private JButton nextButton;
-    private JButton randomButton;
     private List<JButton> buttons;
     public static List<ImageIcon> plantImages;
     public static List<ImageIcon> plantCardImages;
@@ -91,16 +90,6 @@ public class InventoryUI extends JFrame implements ActionListener {
         nextButton.addActionListener(this);
         this.add(nextButton);
         nextButton.setVisible(false);
-
-        // setting the random button
-        randomButton = new JButton();
-        randomButton.setBounds(780, 50, 75, 50);
-        randomButton.addActionListener(this);
-        this.add(randomButton);
-        randomButton.setText("Random");
-
-        // Set Visible
-        this.setVisible(true);
     }
 
     @Override
@@ -125,19 +114,6 @@ public class InventoryUI extends JFrame implements ActionListener {
                 selected--;
             }
         }
-        System.out.println(deck.toString());
-        // Updating the card panels
-        for (int i = 0; i < 6; ++i) {
-            if (i < selected) {
-                cardLabels.get(i).setBackground(Color.GRAY);
-                Integer card = deck.get(i);
-                ImageIcon image = plantImages.get(card);
-                cardLabels.get(i).setIcon(image);
-            } else {
-                cardLabels.get(i).setBackground(Color.white);
-                cardLabels.get(i).setIcon(null);
-            }
-        }
 
         // Updating the nextButton
         if (selected == 6)
@@ -154,17 +130,6 @@ public class InventoryUI extends JFrame implements ActionListener {
             ThreadManager.getInstance().startThread();
 
             this.setVisible(false);
-        }
-
-        if (e.getSource() == randomButton) {
-            Random random = new Random();
-            List<Integer> randomList = new ArrayList<Integer>();
-            while (randomList.size() < 6) {
-                int idxrandom = random.nextInt(1, 10);
-                if (!randomList.contains(idxrandom)) {
-                    randomList.add(idxrandom);
-                }
-            }
         }
     }
 }
