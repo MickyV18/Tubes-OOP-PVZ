@@ -90,9 +90,6 @@ public class InventoryUI extends JFrame implements ActionListener {
         nextButton.addActionListener(this);
         this.add(nextButton);
         nextButton.setVisible(false);
-
-        // Set Visible
-        this.setVisible(true);
     }
 
     @Override
