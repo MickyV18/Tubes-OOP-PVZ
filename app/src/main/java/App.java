@@ -170,8 +170,8 @@ public class App<T> {
     }
 
     public static void main(String[] args) {
-        // new MenuUI();
-        Game.getGame().run();
+        new GUI();  
+        // Game.getGame().run();
     }
 
 }

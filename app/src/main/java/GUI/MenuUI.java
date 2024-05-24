@@ -38,9 +38,6 @@ public class MenuUI extends JFrame implements ActionListener{
         setupButton(helpButton, 3);
         exitButton = new JButton("Exit");
         setupButton(exitButton, 4);
-
-        // SET VISIBLE
-        this.setVisible(true);
     }
 
     private void setupButton(JButton button, int iter) {
@@ -64,19 +61,19 @@ public class MenuUI extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == startGameButton) {
-            new InventoryUI();
+            GUI.loadState("inventory");
             this.setVisible(false);
         }
         else if (e.getSource() == helpButton) {
-            new HelpUI();
+            GUI.loadState("help");
             this.setVisible(false);
         }
         else if (e.getSource() == plantListButton) {
-            new PlantListUI();
+            GUI.loadState("plantlist");
             this.setVisible(false);
         }
         else if (e.getSource() == zombieListButton) {
-            new ZombieListUI();
+            GUI.loadState("zombielist");
             this.setVisible(false);
         }
         else if (e.getSource() == exitButton) {

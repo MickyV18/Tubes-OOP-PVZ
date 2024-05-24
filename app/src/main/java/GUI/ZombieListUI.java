@@ -24,8 +24,6 @@ public class ZombieListUI extends JFrame implements ActionListener {
         backButton.setFocusable(false);
         this.add(backButton);
 
-        // SET VISIBLE
-        this.setVisible(true);
     }
 
     @Override

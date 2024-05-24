@@ -23,16 +23,14 @@ public class PlantListUI extends JFrame implements ActionListener {
         backButton.addActionListener(this);
         backButton.setFocusable(false);
         this.add(backButton);
-
-        // SET VISIBLE
-        this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            new MenuUI();
-            this.setVisible(false);
+            GUI.loadState("menu");
+            // new MenuUI();
+            // this.setVisible(false);
         }
     }
     

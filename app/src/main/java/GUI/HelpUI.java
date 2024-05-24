@@ -28,8 +28,9 @@ public class HelpUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton) {
-            new MenuUI();
-            this.setVisible(false);
+            GUI.loadState("menu");
+            // new MenuUI();
+            // this.setVisible(false);
         }
     }
     

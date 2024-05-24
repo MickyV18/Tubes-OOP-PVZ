@@ -19,7 +19,7 @@ import Creature.Plant.Wallnut;
 public class InventoryDeck {
     private List<Plant> deck;
     private List<Plant> inventory;
-
+    
     public InventoryDeck() {
         deck = new ArrayList<>();
         inventory = new ArrayList<>();
