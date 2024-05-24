@@ -4,7 +4,6 @@ import Creature.Plant.Plant;
 import Sun.Sun;
 
 public class GroundTile extends Tile {
-    // private Plant plant;
 
     public GroundTile() {
         super();

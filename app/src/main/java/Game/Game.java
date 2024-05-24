@@ -1,6 +1,3 @@
-// urusin masalah design pattern dan exception
-// threading TT
-
 package Game;
 
 import java.util.ArrayList;
@@ -28,7 +25,6 @@ public class Game implements Runnable {
     private static int limitZombie = 10;
     private static int CountZombie = 0;
     private static int gametimestamp = -1;
-    private static List<Plant> deckPlants;
     private static boolean gameover = false;
     private static boolean firstround = false;
 
@@ -112,29 +108,6 @@ public class Game implements Runnable {
             }
             currentTime = System.currentTimeMillis();
 
-            // if (x_position == 2 || y_position == 3) {
-            // WaterTile water = (WaterTile) Map.getTile(x_position, y_position);
-            // if (Map.getTile(i, j).getPlant(2) == null && tanaman.isSunEnough(tanaman,
-            // sun)
-            // && tanaman.isCooldown(currentTime, tanaman.getTimeStamp())) {
-            // if (tanaman instanceof Lilypad || water.isLilyPlanted()) {
-            // water.addPlant(tanaman);
-            // }
-            // }
-            // } else {
-            // GroundTile ground = (GroundTile) Map.getTile(x_position, y_position);
-            // if (Map.getTile(i, j).getPlant(w) == null && tanaman.isSunEnough(tanaman,
-            // sun)
-            // && tanaman.isCooldown(currentTime, tanaman.getTimeStamp())) {
-            // if (tanaman instanceof Lilypad) {
-            // ground.addPlant(tanaman);
-            // }
-            // }
-            // }
-            // }
-            // } catch (Exception e) {
-            // // TODO: handle exception (invalidplantexception)
-            // }
             if (gametimestamp > 200) {
                 gametimestamp = 0;
             }
@@ -279,7 +252,7 @@ public class Game implements Runnable {
                 produceSun_time = random.nextInt(5, 10);
             }
 
-            if (gametimestamp >= 160) {
+            if (gametimestamp > 160) {
                 isZeroZombie();
             }
 
@@ -381,20 +354,12 @@ public class Game implements Runnable {
         Map.getTile(x_position, y_position).removeZombie(zombie);
     }
 
-    public static void digplant() {
-
-    }
-
     public static boolean isGameover() {
         return gameover;
     }
 
     public static void setGameover() {
         gameover = true;
-    }
-
-    public static void addPlant(Plant plant) {
-
     }
 
     public static Tile getTiles(Plant plant, int col, int row) {
